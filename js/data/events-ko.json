@@ -1,0 +1,1029 @@
+{
+  "schemaVersion": "1.0.0",
+  "locale": "ko-KR",
+  "storefront": "kr",
+  "events": [
+    {
+      "id": "new-years-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "신정",
+        "en": "New Year's Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "01-01"
+      },
+      "publicHoliday": true,
+      "weight": 82,
+      "moodTags": [
+        "new-start",
+        "hopeful",
+        "clean",
+        "winter"
+      ],
+      "searchKeywords": [
+        "새해",
+        "신년",
+        "시작",
+        "희망",
+        "겨울"
+      ],
+      "relatedDateTags": [
+        "01-01",
+        "january",
+        "winter"
+      ],
+      "notes": "Solar New Year; useful for reset and resolution recommendations."
+    },
+    {
+      "id": "graduation-season",
+      "type": "life-period",
+      "labels": {
+        "ko": "졸업 시즌",
+        "en": "Graduation Season"
+      },
+      "dateRule": {
+        "kind": "month-day-range",
+        "startMonthDay": "02-01",
+        "endMonthDay": "02-20"
+      },
+      "publicHoliday": false,
+      "weight": 70,
+      "moodTags": [
+        "graduation",
+        "farewell",
+        "nostalgic",
+        "hopeful",
+        "school"
+      ],
+      "searchKeywords": [
+        "졸업",
+        "작별",
+        "교복",
+        "친구",
+        "새출발"
+      ],
+      "relatedDateTags": [
+        "school",
+        "february",
+        "farewell"
+      ],
+      "notes": "Korean school graduation ceremonies often cluster in February."
+    },
+    {
+      "id": "valentines-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "밸런타인데이",
+        "en": "Valentine's Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "02-14"
+      },
+      "publicHoliday": false,
+      "weight": 56,
+      "moodTags": [
+        "romantic",
+        "sweet",
+        "confession",
+        "date"
+      ],
+      "searchKeywords": [
+        "밸런타인데이",
+        "고백",
+        "초콜릿",
+        "사랑",
+        "데이트"
+      ],
+      "relatedDateTags": [
+        "02-14",
+        "romance",
+        "couple"
+      ],
+      "notes": "Commercial romance day widely recognized by Korean users."
+    },
+    {
+      "id": "seollal",
+      "type": "year-specific",
+      "labels": {
+        "ko": "설날",
+        "en": "Seollal"
+      },
+      "dateRule": {
+        "kind": "date-range-by-year",
+        "datesByYear": {
+          "2024": {
+            "start": "2024-02-09",
+            "end": "2024-02-12",
+            "mainDate": "2024-02-10",
+            "observedDates": [
+              "2024-02-09",
+              "2024-02-10",
+              "2024-02-11",
+              "2024-02-12"
+            ]
+          },
+          "2025": {
+            "start": "2025-01-28",
+            "end": "2025-01-30",
+            "mainDate": "2025-01-29",
+            "observedDates": [
+              "2025-01-28",
+              "2025-01-29",
+              "2025-01-30"
+            ]
+          },
+          "2026": {
+            "start": "2026-02-16",
+            "end": "2026-02-18",
+            "mainDate": "2026-02-17",
+            "observedDates": [
+              "2026-02-16",
+              "2026-02-17",
+              "2026-02-18"
+            ]
+          },
+          "2027": {
+            "start": "2027-02-06",
+            "end": "2027-02-09",
+            "mainDate": "2027-02-07",
+            "observedDates": [
+              "2027-02-06",
+              "2027-02-07",
+              "2027-02-08",
+              "2027-02-09"
+            ]
+          },
+          "2028": {
+            "start": "2028-01-25",
+            "end": "2028-01-27",
+            "mainDate": "2028-01-26",
+            "observedDates": [
+              "2028-01-25",
+              "2028-01-26",
+              "2028-01-27"
+            ]
+          }
+        }
+      },
+      "publicHoliday": true,
+      "weight": 96,
+      "moodTags": [
+        "family",
+        "tradition",
+        "new-start",
+        "winter",
+        "homecoming"
+      ],
+      "searchKeywords": [
+        "설날",
+        "새해",
+        "가족",
+        "고향",
+        "떡국",
+        "세배"
+      ],
+      "relatedDateTags": [
+        "lunar-new-year",
+        "family",
+        "winter"
+      ],
+      "notes": "Major Korean lunar holiday."
+    },
+    {
+      "id": "independence-movement-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "삼일절",
+        "en": "Independence Movement Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "03-01"
+      },
+      "publicHoliday": true,
+      "weight": 90,
+      "moodTags": [
+        "solemn",
+        "historic",
+        "reflective",
+        "national"
+      ],
+      "searchKeywords": [
+        "삼일절",
+        "독립운동",
+        "역사",
+        "태극기",
+        "기억"
+      ],
+      "relatedDateTags": [
+        "03-01",
+        "history",
+        "national-holiday"
+      ],
+      "notes": "Major national holiday with reflective and historical tone."
+    },
+    {
+      "id": "spring-campus-season",
+      "type": "seasonal-range",
+      "labels": {
+        "ko": "새학기와 캠퍼스 봄",
+        "en": "New Semester Spring"
+      },
+      "dateRule": {
+        "kind": "month-day-range",
+        "startMonthDay": "03-02",
+        "endMonthDay": "03-31"
+      },
+      "publicHoliday": false,
+      "weight": 72,
+      "moodTags": [
+        "new-start",
+        "campus",
+        "spring",
+        "nervous",
+        "hopeful"
+      ],
+      "searchKeywords": [
+        "새학기",
+        "입학",
+        "캠퍼스",
+        "봄",
+        "시작"
+      ],
+      "relatedDateTags": [
+        "school",
+        "spring",
+        "march"
+      ],
+      "notes": "School opening and university semester mood."
+    },
+    {
+      "id": "white-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "화이트데이",
+        "en": "White Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "03-14"
+      },
+      "publicHoliday": false,
+      "weight": 52,
+      "moodTags": [
+        "romantic",
+        "sweet",
+        "reply",
+        "date"
+      ],
+      "searchKeywords": [
+        "화이트데이",
+        "사탕",
+        "연애",
+        "답장",
+        "고백"
+      ],
+      "relatedDateTags": [
+        "03-14",
+        "romance",
+        "couple"
+      ],
+      "notes": "Romance and confession follow-up day."
+    },
+    {
+      "id": "cherry-blossom-season",
+      "type": "seasonal-range",
+      "labels": {
+        "ko": "벚꽃 시즌",
+        "en": "Cherry Blossom Season"
+      },
+      "dateRule": {
+        "kind": "month-day-range",
+        "startMonthDay": "03-25",
+        "endMonthDay": "04-12"
+      },
+      "publicHoliday": false,
+      "weight": 86,
+      "moodTags": [
+        "spring",
+        "romantic",
+        "walking",
+        "fresh",
+        "nostalgic"
+      ],
+      "searchKeywords": [
+        "벚꽃",
+        "봄",
+        "산책",
+        "연애",
+        "꽃놀이"
+      ],
+      "relatedDateTags": [
+        "spring",
+        "march",
+        "april",
+        "cherry-blossom"
+      ],
+      "notes": "Approximate nationwide prototype range."
+    },
+    {
+      "id": "arbor-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "식목일",
+        "en": "Arbor Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "04-05"
+      },
+      "publicHoliday": false,
+      "weight": 44,
+      "moodTags": [
+        "green",
+        "spring",
+        "fresh",
+        "gentle"
+      ],
+      "searchKeywords": [
+        "식목일",
+        "나무",
+        "초록",
+        "봄",
+        "산책"
+      ],
+      "relatedDateTags": [
+        "04-05",
+        "spring",
+        "nature"
+      ],
+      "notes": "Good anchor for green spring mood."
+    },
+    {
+      "id": "childrens-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "어린이날",
+        "en": "Children's Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "05-05"
+      },
+      "publicHoliday": true,
+      "weight": 88,
+      "moodTags": [
+        "bright",
+        "playful",
+        "family",
+        "nostalgic"
+      ],
+      "searchKeywords": [
+        "어린이날",
+        "가족",
+        "동심",
+        "소풍",
+        "행복"
+      ],
+      "relatedDateTags": [
+        "05-05",
+        "family",
+        "may"
+      ],
+      "notes": "Family, childhood, picnic, and nostalgic pop recommendations work well."
+    },
+    {
+      "id": "parents-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "어버이날",
+        "en": "Parents' Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "05-08"
+      },
+      "publicHoliday": false,
+      "weight": 72,
+      "moodTags": [
+        "family",
+        "gratitude",
+        "warm",
+        "sentimental"
+      ],
+      "searchKeywords": [
+        "어버이날",
+        "부모님",
+        "감사",
+        "가족",
+        "카네이션"
+      ],
+      "relatedDateTags": [
+        "05-08",
+        "family",
+        "gratitude"
+      ],
+      "notes": "Emotionally warm family-centered day."
+    },
+    {
+      "id": "teachers-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "스승의 날",
+        "en": "Teacher's Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "05-15"
+      },
+      "publicHoliday": false,
+      "weight": 58,
+      "moodTags": [
+        "gratitude",
+        "school",
+        "memory",
+        "warm"
+      ],
+      "searchKeywords": [
+        "스승의날",
+        "선생님",
+        "감사",
+        "학교",
+        "추억"
+      ],
+      "relatedDateTags": [
+        "05-15",
+        "school",
+        "gratitude"
+      ],
+      "notes": "School-memory and thank-you themed tracks."
+    },
+    {
+      "id": "memorial-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "현충일",
+        "en": "Memorial Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "06-06"
+      },
+      "publicHoliday": true,
+      "weight": 84,
+      "moodTags": [
+        "solemn",
+        "quiet",
+        "respectful",
+        "reflective"
+      ],
+      "searchKeywords": [
+        "현충일",
+        "추모",
+        "기억",
+        "묵념",
+        "희생"
+      ],
+      "relatedDateTags": [
+        "06-06",
+        "memorial",
+        "national-holiday"
+      ],
+      "notes": "Avoid overly playful recommendations."
+    },
+    {
+      "id": "jangma-rainy-season",
+      "type": "seasonal-range",
+      "labels": {
+        "ko": "장마철",
+        "en": "Korean Rainy Season"
+      },
+      "dateRule": {
+        "kind": "month-day-range",
+        "startMonthDay": "06-20",
+        "endMonthDay": "07-20"
+      },
+      "publicHoliday": false,
+      "weight": 76,
+      "moodTags": [
+        "rain",
+        "humid",
+        "melancholy",
+        "indoors",
+        "late-night"
+      ],
+      "searchKeywords": [
+        "장마",
+        "비",
+        "우산",
+        "습한",
+        "밤"
+      ],
+      "relatedDateTags": [
+        "rain",
+        "summer",
+        "june",
+        "july"
+      ],
+      "notes": "Approximate rainy-season window for Korea."
+    },
+    {
+      "id": "constitution-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "제헌절",
+        "en": "Constitution Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "07-17"
+      },
+      "publicHoliday": false,
+      "weight": 48,
+      "moodTags": [
+        "national",
+        "historic",
+        "civic",
+        "summer"
+      ],
+      "searchKeywords": [
+        "제헌절",
+        "헌법",
+        "대한민국",
+        "역사",
+        "여름"
+      ],
+      "relatedDateTags": [
+        "07-17",
+        "history",
+        "summer"
+      ],
+      "notes": "National history marker."
+    },
+    {
+      "id": "summer-vacation",
+      "type": "seasonal-range",
+      "labels": {
+        "ko": "여름방학과 휴가철",
+        "en": "Summer Vacation"
+      },
+      "dateRule": {
+        "kind": "month-day-range",
+        "startMonthDay": "07-25",
+        "endMonthDay": "08-15"
+      },
+      "publicHoliday": false,
+      "weight": 78,
+      "moodTags": [
+        "summer",
+        "travel",
+        "beach",
+        "freedom",
+        "bright"
+      ],
+      "searchKeywords": [
+        "여름방학",
+        "휴가",
+        "바다",
+        "여행",
+        "피서"
+      ],
+      "relatedDateTags": [
+        "summer",
+        "vacation",
+        "august"
+      ],
+      "notes": "Peak domestic vacation mood."
+    },
+    {
+      "id": "liberation-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "광복절",
+        "en": "Liberation Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "08-15"
+      },
+      "publicHoliday": true,
+      "weight": 92,
+      "moodTags": [
+        "national",
+        "historic",
+        "hopeful",
+        "summer",
+        "liberation"
+      ],
+      "searchKeywords": [
+        "광복절",
+        "해방",
+        "태극기",
+        "대한민국",
+        "역사"
+      ],
+      "relatedDateTags": [
+        "08-15",
+        "history",
+        "national-holiday"
+      ],
+      "notes": "Strong exact-date match for Korean historical and hopeful moods."
+    },
+    {
+      "id": "chuseok",
+      "type": "year-specific",
+      "labels": {
+        "ko": "추석",
+        "en": "Chuseok"
+      },
+      "dateRule": {
+        "kind": "date-range-by-year",
+        "datesByYear": {
+          "2024": {
+            "start": "2024-09-16",
+            "end": "2024-09-18",
+            "mainDate": "2024-09-17",
+            "observedDates": [
+              "2024-09-16",
+              "2024-09-17",
+              "2024-09-18"
+            ]
+          },
+          "2025": {
+            "start": "2025-10-05",
+            "end": "2025-10-08",
+            "mainDate": "2025-10-06",
+            "observedDates": [
+              "2025-10-05",
+              "2025-10-06",
+              "2025-10-07",
+              "2025-10-08"
+            ]
+          },
+          "2026": {
+            "start": "2026-09-24",
+            "end": "2026-09-26",
+            "mainDate": "2026-09-25",
+            "observedDates": [
+              "2026-09-24",
+              "2026-09-25",
+              "2026-09-26"
+            ]
+          },
+          "2027": {
+            "start": "2027-09-14",
+            "end": "2027-09-16",
+            "mainDate": "2027-09-15",
+            "observedDates": [
+              "2027-09-14",
+              "2027-09-15",
+              "2027-09-16"
+            ]
+          },
+          "2028": {
+            "start": "2028-10-02",
+            "end": "2028-10-04",
+            "mainDate": "2028-10-03",
+            "observedDates": [
+              "2028-10-02",
+              "2028-10-03",
+              "2028-10-04"
+            ]
+          }
+        }
+      },
+      "publicHoliday": true,
+      "weight": 96,
+      "moodTags": [
+        "family",
+        "harvest",
+        "autumn",
+        "homecoming",
+        "tradition"
+      ],
+      "searchKeywords": [
+        "추석",
+        "한가위",
+        "보름달",
+        "고향",
+        "송편",
+        "가족"
+      ],
+      "relatedDateTags": [
+        "chuseok",
+        "autumn",
+        "family",
+        "harvest"
+      ],
+      "notes": "Major Korean harvest holiday."
+    },
+    {
+      "id": "national-foundation-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "개천절",
+        "en": "National Foundation Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "10-03"
+      },
+      "publicHoliday": true,
+      "weight": 78,
+      "moodTags": [
+        "national",
+        "autumn",
+        "historic",
+        "ceremonial"
+      ],
+      "searchKeywords": [
+        "개천절",
+        "단군",
+        "건국",
+        "가을",
+        "대한민국"
+      ],
+      "relatedDateTags": [
+        "10-03",
+        "history",
+        "autumn"
+      ],
+      "notes": "Often near Chuseok in some years."
+    },
+    {
+      "id": "hangeul-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "한글날",
+        "en": "Hangeul Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "10-09"
+      },
+      "publicHoliday": true,
+      "weight": 90,
+      "moodTags": [
+        "korean",
+        "literary",
+        "autumn",
+        "thoughtful",
+        "proud"
+      ],
+      "searchKeywords": [
+        "한글날",
+        "한글",
+        "세종대왕",
+        "우리말",
+        "가을"
+      ],
+      "relatedDateTags": [
+        "10-09",
+        "language",
+        "autumn"
+      ],
+      "notes": "Good for Korean lyric-forward music and autumn reflection."
+    },
+    {
+      "id": "autumn-foliage-season",
+      "type": "seasonal-range",
+      "labels": {
+        "ko": "단풍 시즌",
+        "en": "Autumn Foliage Season"
+      },
+      "dateRule": {
+        "kind": "month-day-range",
+        "startMonthDay": "10-15",
+        "endMonthDay": "11-10"
+      },
+      "publicHoliday": false,
+      "weight": 80,
+      "moodTags": [
+        "autumn",
+        "nostalgic",
+        "walking",
+        "warm",
+        "reflective"
+      ],
+      "searchKeywords": [
+        "단풍",
+        "가을",
+        "산책",
+        "낙엽",
+        "추억"
+      ],
+      "relatedDateTags": [
+        "autumn",
+        "october",
+        "november"
+      ],
+      "notes": "Good fallback when no exact holiday is present."
+    },
+    {
+      "id": "pepero-day",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "빼빼로데이",
+        "en": "Pepero Day"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "11-11"
+      },
+      "publicHoliday": false,
+      "weight": 54,
+      "moodTags": [
+        "sweet",
+        "crush",
+        "friendship",
+        "playful"
+      ],
+      "searchKeywords": [
+        "빼빼로데이",
+        "고백",
+        "친구",
+        "달달한",
+        "짝사랑"
+      ],
+      "relatedDateTags": [
+        "11-11",
+        "romance",
+        "friendship"
+      ],
+      "notes": "Light romance and friendship recommendations."
+    },
+    {
+      "id": "college-entrance-exam-season",
+      "type": "life-period",
+      "labels": {
+        "ko": "수능 시즌",
+        "en": "College Entrance Exam Season"
+      },
+      "dateRule": {
+        "kind": "single-date-by-year",
+        "datesByYear": {
+          "2024": {
+            "mainDate": "2024-11-14",
+            "observedDates": [
+              "2024-11-14"
+            ]
+          },
+          "2025": {
+            "mainDate": "2025-11-13",
+            "observedDates": [
+              "2025-11-13"
+            ]
+          },
+          "2026": {
+            "mainDate": "2026-11-19",
+            "observedDates": [
+              "2026-11-19"
+            ]
+          },
+          "2027": {
+            "mainDate": "2027-11-18",
+            "observedDates": [
+              "2027-11-18"
+            ]
+          },
+          "2028": {
+            "mainDate": "2028-11-16",
+            "observedDates": [
+              "2028-11-16"
+            ]
+          }
+        }
+      },
+      "publicHoliday": false,
+      "weight": 86,
+      "moodTags": [
+        "exam",
+        "tension",
+        "comfort",
+        "youth",
+        "encouragement"
+      ],
+      "searchKeywords": [
+        "수능",
+        "시험",
+        "응원",
+        "고3",
+        "청춘"
+      ],
+      "relatedDateTags": [
+        "exam",
+        "november",
+        "school"
+      ],
+      "notes": "Year-specific dates for prototype testing."
+    },
+    {
+      "id": "first-snow-season",
+      "type": "seasonal-range",
+      "labels": {
+        "ko": "첫눈을 기다리는 계절",
+        "en": "First Snow Season"
+      },
+      "dateRule": {
+        "kind": "month-day-range",
+        "startMonthDay": "11-20",
+        "endMonthDay": "12-15"
+      },
+      "publicHoliday": false,
+      "weight": 74,
+      "moodTags": [
+        "winter",
+        "first-snow",
+        "romantic",
+        "quiet",
+        "longing"
+      ],
+      "searchKeywords": [
+        "첫눈",
+        "겨울",
+        "기다림",
+        "고백",
+        "눈"
+      ],
+      "relatedDateTags": [
+        "winter",
+        "snow",
+        "november",
+        "december"
+      ],
+      "notes": "Cultural first-snow romance theme."
+    },
+    {
+      "id": "year-end-season",
+      "type": "seasonal-range",
+      "labels": {
+        "ko": "연말 시즌",
+        "en": "Year-End Season"
+      },
+      "dateRule": {
+        "kind": "month-day-range",
+        "startMonthDay": "12-15",
+        "endMonthDay": "12-31"
+      },
+      "publicHoliday": false,
+      "weight": 82,
+      "moodTags": [
+        "year-end",
+        "winter",
+        "nostalgic",
+        "party",
+        "farewell"
+      ],
+      "searchKeywords": [
+        "연말",
+        "송년",
+        "겨울",
+        "회고",
+        "파티"
+      ],
+      "relatedDateTags": [
+        "december",
+        "winter",
+        "year-end"
+      ],
+      "notes": "Reflection, farewell, party, or cozy tracks."
+    },
+    {
+      "id": "christmas",
+      "type": "fixed-date",
+      "labels": {
+        "ko": "크리스마스",
+        "en": "Christmas"
+      },
+      "dateRule": {
+        "kind": "month-day",
+        "monthDay": "12-25"
+      },
+      "publicHoliday": true,
+      "weight": 88,
+      "moodTags": [
+        "winter",
+        "romantic",
+        "cozy",
+        "bright",
+        "holiday"
+      ],
+      "searchKeywords": [
+        "크리스마스",
+        "겨울",
+        "캐럴",
+        "연말",
+        "눈"
+      ],
+      "relatedDateTags": [
+        "12-25",
+        "winter",
+        "holiday"
+      ],
+      "notes": "Strong seasonal and holiday recommendation anchor."
+    }
+  ]
+}

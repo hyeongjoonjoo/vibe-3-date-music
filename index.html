@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Korean date-based music recommendation interface with Apple Music support."
+    >
+    <title>Date Music Korea</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <div class="app-shell">
+      <header class="site-header" aria-labelledby="app-title">
+        <div class="system-line" aria-label="Application status">
+          <span class="route-badge route-badge--red">D</span>
+          <span class="system-line__text">Date Music System</span>
+          <span class="system-line__status" data-js="music-mode-label">Demo Mode</span>
+        </div>
+
+        <div class="title-block">
+          <p class="kicker">Selected Date</p>
+          <h1 id="app-title" data-js="selected-date-title">오늘 날짜</h1>
+        </div>
+      </header>
+
+      <main id="main-content" class="main-grid main-grid--focused">
+        <section class="panel calendar-panel" aria-labelledby="calendar-title">
+          <div class="panel__header">
+            <div>
+              <p class="section-code">01</p>
+              <h2 id="calendar-title">Calendar</h2>
+            </div>
+            <div class="month-controls" aria-label="Calendar month controls">
+              <button class="icon-button" type="button" aria-label="Previous month" data-js="prev-month">
+                <span aria-hidden="true">←</span>
+              </button>
+              <button class="icon-button" type="button" aria-label="Next month" data-js="next-month">
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+
+          <form class="date-form" data-js="date-form">
+            <label for="selected-date">Choose a date</label>
+            <div class="date-form__row">
+              <input id="selected-date" name="selected-date" type="date" data-js="date-input">
+              <button type="submit">Recommend</button>
+            </div>
+          </form>
+
+          <div class="calendar-shell" aria-label="Month calendar">
+            <div class="calendar-month" data-js="calendar-month-label">Month</div>
+            <div class="weekday-grid" aria-hidden="true">
+              <span>Sun</span>
+              <span>Mon</span>
+              <span>Tue</span>
+              <span>Wed</span>
+              <span>Thu</span>
+              <span>Fri</span>
+              <span>Sat</span>
+            </div>
+            <div class="date-grid" data-js="calendar-grid"></div>
+          </div>
+
+        </section>
+
+        <section class="panel recommendations-panel recommendations-panel--single" aria-labelledby="recommendations-title">
+          <div class="panel__header">
+            <div>
+              <h2 id="recommendations-title">Best Recommendation</h2>
+            </div>
+          </div>
+
+          <ol class="recommendation-list recommendation-list--single" data-js="recommendation-list"></ol>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>
+          Demo mode works locally without Apple Music credentials. Apple Music links open catalog
+          search or track pages when available.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

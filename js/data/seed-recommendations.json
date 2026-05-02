@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": "1.0.0",
+  "locale": "ko-KR",
+  "storefront": "kr",
+  "songs": [
+    {
+      "id": "iu-night-letter",
+      "title": "밤편지",
+      "artist": "IU",
+      "appleMusicSearchTerm": "IU 밤편지",
+      "eventTags": [
+        "hangeul-day",
+        "autumn-foliage-season",
+        "year-end-season"
+      ],
+      "dateTags": [
+        "10-09",
+        "autumn",
+        "october",
+        "november"
+      ],
+      "moodTags": [
+        "literary",
+        "quiet",
+        "longing",
+        "warm",
+        "reflective"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "편지처럼 마음을 천천히 전하는 분위기",
+      "notes": "Strong Korean lyric-forward recommendation for Hangeul Day and autumn evenings.",
+      "priority": 96
+    },
+    {
+      "id": "busker-cherry-blossom-ending",
+      "title": "벚꽃 엔딩",
+      "artist": "버스커 버스커",
+      "appleMusicSearchTerm": "버스커 버스커 벚꽃 엔딩",
+      "eventTags": [
+        "cherry-blossom-season"
+      ],
+      "dateTags": [
+        "03-25",
+        "04-01",
+        "04-05",
+        "spring",
+        "april"
+      ],
+      "moodTags": [
+        "spring",
+        "walking",
+        "romantic",
+        "fresh",
+        "nostalgic"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "벚꽃길을 걷는 봄날의 설렘",
+      "notes": "Essential Korean cherry blossom season anchor.",
+      "priority": 100
+    },
+    {
+      "id": "roy-kim-bom-bom-bom",
+      "title": "봄봄봄",
+      "artist": "로이킴",
+      "appleMusicSearchTerm": "로이킴 봄봄봄",
+      "eventTags": [
+        "cherry-blossom-season",
+        "spring-campus-season",
+        "arbor-day"
+      ],
+      "dateTags": [
+        "03-14",
+        "04-05",
+        "spring",
+        "march",
+        "april"
+      ],
+      "moodTags": [
+        "spring",
+        "bright",
+        "romantic",
+        "fresh",
+        "new-start"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "봄이 오는 순간의 밝고 가벼운 기분",
+      "notes": "Good spring fallback when no exact holiday exists.",
+      "priority": 92
+    },
+    {
+      "id": "bol4-galaxy",
+      "title": "우주를 줄게",
+      "artist": "볼빨간사춘기",
+      "appleMusicSearchTerm": "볼빨간사춘기 우주를 줄게",
+      "eventTags": [
+        "valentines-day",
+        "white-day",
+        "pepero-day"
+      ],
+      "dateTags": [
+        "02-14",
+        "03-14",
+        "11-11",
+        "romance"
+      ],
+      "moodTags": [
+        "romantic",
+        "sweet",
+        "crush",
+        "bright",
+        "date"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "좋아하는 마음이 커지는 달콤한 분위기",
+      "notes": "Useful for Korean romance dates and confession moments.",
+      "priority": 90
+    },
+    {
+      "id": "akmu-give-love",
+      "title": "Give Love",
+      "artist": "AKMU",
+      "appleMusicSearchTerm": "AKMU Give Love",
+      "eventTags": [
+        "valentines-day",
+        "white-day",
+        "pepero-day"
+      ],
+      "dateTags": [
+        "02-14",
+        "03-14",
+        "11-11"
+      ],
+      "moodTags": [
+        "playful",
+        "sweet",
+        "crush",
+        "bright"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "풋풋하고 장난스러운 고백의 에너지",
+      "notes": "Light romance recommendation for younger users.",
+      "priority": 84
+    },
+    {
+      "id": "bts-spring-day",
+      "title": "봄날",
+      "artist": "BTS",
+      "appleMusicSearchTerm": "BTS 봄날 Spring Day",
+      "eventTags": [
+        "graduation-season",
+        "spring-campus-season",
+        "year-end-season"
+      ],
+      "dateTags": [
+        "02-15",
+        "03-01",
+        "spring",
+        "school",
+        "farewell"
+      ],
+      "moodTags": [
+        "longing",
+        "nostalgic",
+        "hopeful",
+        "farewell",
+        "comfort"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "그리움과 다시 만날 희망이 함께 있는 정서",
+      "notes": "Works for graduation, early spring, and reflective transition days.",
+      "priority": 95
+    },
+    {
+      "id": "red-velvet-red-flavor",
+      "title": "빨간 맛",
+      "artist": "Red Velvet",
+      "appleMusicSearchTerm": "Red Velvet 빨간 맛",
+      "eventTags": [
+        "summer-vacation"
+      ],
+      "dateTags": [
+        "07-25",
+        "08-01",
+        "08-15",
+        "summer"
+      ],
+      "moodTags": [
+        "summer",
+        "bright",
+        "playful",
+        "vacation",
+        "party"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "한여름 과일처럼 선명하고 경쾌한 에너지",
+      "notes": "High-energy Korean summer vacation staple.",
+      "priority": 94
+    },
+    {
+      "id": "winner-island",
+      "title": "ISLAND",
+      "artist": "WINNER",
+      "appleMusicSearchTerm": "WINNER ISLAND",
+      "eventTags": [
+        "summer-vacation"
+      ],
+      "dateTags": [
+        "07-30",
+        "08-05",
+        "summer",
+        "vacation"
+      ],
+      "moodTags": [
+        "summer",
+        "travel",
+        "beach",
+        "freedom",
+        "bright"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "섬으로 떠나는 듯한 여름 휴가의 해방감",
+      "notes": "Travel and beach mood for peak vacation dates.",
+      "priority": 82
+    },
+    {
+      "id": "heize-you-clouds-rain",
+      "title": "비도 오고 그래서",
+      "artist": "헤이즈",
+      "appleMusicSearchTerm": "헤이즈 비도 오고 그래서",
+      "eventTags": [
+        "jangma-rainy-season"
+      ],
+      "dateTags": [
+        "06-20",
+        "07-01",
+        "07-15",
+        "rain"
+      ],
+      "moodTags": [
+        "rain",
+        "melancholy",
+        "late-night",
+        "longing",
+        "indoors"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "비 오는 날 떠오르는 그리움",
+      "notes": "Core rainy-season recommendation.",
+      "priority": 98
+    },
+    {
+      "id": "epik-high-umbrella",
+      "title": "우산",
+      "artist": "에픽하이",
+      "appleMusicSearchTerm": "에픽하이 우산 윤하",
+      "eventTags": [
+        "jangma-rainy-season"
+      ],
+      "dateTags": [
+        "06-25",
+        "07-10",
+        "rain"
+      ],
+      "moodTags": [
+        "rain",
+        "melancholy",
+        "urban",
+        "comfort",
+        "nostalgic"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "우산 아래 남는 쓸쓸한 도시 감성",
+      "notes": "Pairs naturally with rainy July dates.",
+      "priority": 92
+    },
+    {
+      "id": "kim-kwang-seok-around-thirty",
+      "title": "서른 즈음에",
+      "artist": "김광석",
+      "appleMusicSearchTerm": "김광석 서른 즈음에",
+      "eventTags": [
+        "year-end-season",
+        "graduation-season",
+        "autumn-foliage-season"
+      ],
+      "dateTags": [
+        "02-10",
+        "10-30",
+        "12-31",
+        "farewell"
+      ],
+      "moodTags": [
+        "reflective",
+        "nostalgic",
+        "farewell",
+        "life",
+        "quiet"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "지나온 시간을 돌아보는 담담한 마음",
+      "notes": "Excellent for life transitions and year-end reflection.",
+      "priority": 91
+    },
+    {
+      "id": "lee-moon-sae-old-love",
+      "title": "옛사랑",
+      "artist": "이문세",
+      "appleMusicSearchTerm": "이문세 옛사랑",
+      "eventTags": [
+        "autumn-foliage-season",
+        "first-snow-season",
+        "year-end-season"
+      ],
+      "dateTags": [
+        "10-20",
+        "11-20",
+        "12-15",
+        "autumn",
+        "winter"
+      ],
+      "moodTags": [
+        "nostalgic",
+        "longing",
+        "quiet",
+        "autumn",
+        "winter"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "계절이 바뀔 때 떠오르는 오래된 사랑",
+      "notes": "Classic Korean seasonal nostalgia.",
+      "priority": 93
+    },
+    {
+      "id": "lee-moon-sae-gwanghwamun",
+      "title": "광화문 연가",
+      "artist": "이문세",
+      "appleMusicSearchTerm": "이문세 광화문 연가",
+      "eventTags": [
+        "hangeul-day",
+        "autumn-foliage-season",
+        "first-snow-season"
+      ],
+      "dateTags": [
+        "10-09",
+        "10-25",
+        "11-25",
+        "seoul"
+      ],
+      "moodTags": [
+        "autumn",
+        "nostalgic",
+        "literary",
+        "seoul",
+        "walking"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "서울의 거리와 계절감이 겹치는 정서",
+      "notes": "Strong Seoul autumn and Korean-language cultural signal.",
+      "priority": 89
+    },
+    {
+      "id": "park-hyo-shin-wild-flower",
+      "title": "야생화",
+      "artist": "박효신",
+      "appleMusicSearchTerm": "박효신 야생화",
+      "eventTags": [
+        "independence-movement-day",
+        "memorial-day",
+        "liberation-day"
+      ],
+      "dateTags": [
+        "03-01",
+        "06-06",
+        "08-15"
+      ],
+      "moodTags": [
+        "solemn",
+        "hopeful",
+        "dramatic",
+        "resilient",
+        "reflective"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "견디고 다시 피어나는 듯한 깊은 감정",
+      "notes": "Appropriate for solemn national days when hopeful resolution is needed.",
+      "priority": 88
+    },
+    {
+      "id": "yang-hee-eun-morning-dew",
+      "title": "아침이슬",
+      "artist": "양희은",
+      "appleMusicSearchTerm": "양희은 아침이슬",
+      "eventTags": [
+        "independence-movement-day",
+        "liberation-day",
+        "memorial-day"
+      ],
+      "dateTags": [
+        "03-01",
+        "06-06",
+        "08-15",
+        "history"
+      ],
+      "moodTags": [
+        "historic",
+        "solemn",
+        "resilient",
+        "national",
+        "reflective"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "시대의 기억과 조용한 의지가 느껴지는 분위기",
+      "notes": "Historically resonant Korean song for national remembrance contexts.",
+      "priority": 87
+    },
+    {
+      "id": "god-to-mother",
+      "title": "어머님께",
+      "artist": "god",
+      "appleMusicSearchTerm": "god 어머님께",
+      "eventTags": [
+        "parents-day",
+        "seollal",
+        "chuseok"
+      ],
+      "dateTags": [
+        "05-08",
+        "family",
+        "homecoming"
+      ],
+      "moodTags": [
+        "family",
+        "gratitude",
+        "sentimental",
+        "memory"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "부모님을 떠올리게 하는 진한 가족 서사",
+      "notes": "Strong Parents' Day and family-gathering recommendation.",
+      "priority": 90
+    },
+    {
+      "id": "insooni-father",
+      "title": "아버지",
+      "artist": "인순이",
+      "appleMusicSearchTerm": "인순이 아버지",
+      "eventTags": [
+        "parents-day",
+        "seollal",
+        "chuseok"
+      ],
+      "dateTags": [
+        "05-08",
+        "family"
+      ],
+      "moodTags": [
+        "family",
+        "gratitude",
+        "sentimental",
+        "powerful"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "부모님의 시간을 돌아보는 묵직한 감정",
+      "notes": "Family gratitude option with strong emotional intensity.",
+      "priority": 84
+    },
+    {
+      "id": "kim-gun-mo-seoul-moon",
+      "title": "서울의 달",
+      "artist": "김건모",
+      "appleMusicSearchTerm": "김건모 서울의 달",
+      "eventTags": [
+        "chuseok",
+        "autumn-foliage-season",
+        "year-end-season"
+      ],
+      "dateTags": [
+        "chuseok",
+        "autumn",
+        "moon",
+        "seoul"
+      ],
+      "moodTags": [
+        "moon",
+        "city",
+        "nostalgic",
+        "autumn",
+        "lonely"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "도시의 밤과 달빛이 주는 쓸쓸한 정서",
+      "notes": "Useful for Chuseok full-moon mood.",
+      "priority": 86
+    },
+    {
+      "id": "nct-dream-graduation",
+      "title": "Graduation",
+      "artist": "NCT DREAM",
+      "appleMusicSearchTerm": "NCT DREAM Graduation",
+      "eventTags": [
+        "graduation-season"
+      ],
+      "dateTags": [
+        "02-01",
+        "02-10",
+        "school",
+        "farewell"
+      ],
+      "moodTags": [
+        "graduation",
+        "youth",
+        "farewell",
+        "hopeful",
+        "memory"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "청춘의 한 시기를 마무리하는 따뜻한 감정",
+      "notes": "Modern K-pop graduation seed.",
+      "priority": 86
+    },
+    {
+      "id": "day6-time-of-our-life",
+      "title": "한 페이지가 될 수 있게",
+      "artist": "DAY6",
+      "appleMusicSearchTerm": "DAY6 한 페이지가 될 수 있게",
+      "eventTags": [
+        "graduation-season",
+        "spring-campus-season",
+        "new-years-day"
+      ],
+      "dateTags": [
+        "01-01",
+        "02-15",
+        "03-02",
+        "school"
+      ],
+      "moodTags": [
+        "youth",
+        "hopeful",
+        "new-start",
+        "memory",
+        "bright"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "지금의 시간이 좋은 기억으로 남길 바라는 마음",
+      "notes": "Excellent transition and youth-memory recommendation.",
+      "priority": 92
+    },
+    {
+      "id": "snsd-into-the-new-world",
+      "title": "다시 만난 세계",
+      "artist": "소녀시대",
+      "appleMusicSearchTerm": "소녀시대 다시 만난 세계",
+      "eventTags": [
+        "new-years-day",
+        "graduation-season",
+        "liberation-day"
+      ],
+      "dateTags": [
+        "01-01",
+        "02-15",
+        "08-15",
+        "new-start"
+      ],
+      "moodTags": [
+        "hopeful",
+        "anthemic",
+        "new-start",
+        "youth",
+        "bright"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "새로운 세계로 나아가는 응원가 같은 에너지",
+      "notes": "Strong Korean pop anthem for starts and hopeful national moods.",
+      "priority": 94
+    },
+    {
+      "id": "exo-first-snow",
+      "title": "첫 눈",
+      "artist": "EXO",
+      "appleMusicSearchTerm": "EXO 첫 눈",
+      "eventTags": [
+        "first-snow-season",
+        "christmas"
+      ],
+      "dateTags": [
+        "11-25",
+        "12-01",
+        "12-25",
+        "winter",
+        "snow"
+      ],
+      "moodTags": [
+        "first-snow",
+        "winter",
+        "romantic",
+        "nostalgic",
+        "bright"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "첫눈이 오면 다시 떠오르는 겨울의 설렘",
+      "notes": "Essential Korean first-snow and December recommendation.",
+      "priority": 97
+    },
+    {
+      "id": "iu-merry-christmas-in-advance",
+      "title": "미리 메리 크리스마스",
+      "artist": "IU",
+      "appleMusicSearchTerm": "IU 미리 메리 크리스마스",
+      "eventTags": [
+        "christmas",
+        "year-end-season",
+        "first-snow-season"
+      ],
+      "dateTags": [
+        "12-15",
+        "12-24",
+        "12-25",
+        "winter"
+      ],
+      "moodTags": [
+        "christmas",
+        "winter",
+        "sweet",
+        "bright",
+        "romantic"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "크리스마스를 기다리는 밝고 포근한 설렘",
+      "notes": "Core Korean Christmas seed.",
+      "priority": 96
+    },
+    {
+      "id": "lee-hi-breathe",
+      "title": "한숨",
+      "artist": "이하이",
+      "appleMusicSearchTerm": "이하이 한숨",
+      "eventTags": [
+        "college-entrance-exam-season",
+        "memorial-day",
+        "year-end-season"
+      ],
+      "dateTags": [
+        "11-13",
+        "11-19",
+        "06-06",
+        "exam"
+      ],
+      "moodTags": [
+        "comfort",
+        "quiet",
+        "tired",
+        "healing",
+        "reflective"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "힘든 하루를 조용히 위로하는 분위기",
+      "notes": "Strong comfort song for exam stress and heavy days.",
+      "priority": 90
+    },
+    {
+      "id": "okdal-cheer-up",
+      "title": "수고했어, 오늘도",
+      "artist": "옥상달빛",
+      "appleMusicSearchTerm": "옥상달빛 수고했어 오늘도",
+      "eventTags": [
+        "college-entrance-exam-season",
+        "year-end-season"
+      ],
+      "dateTags": [
+        "exam",
+        "11-13",
+        "11-19",
+        "12-31"
+      ],
+      "moodTags": [
+        "comfort",
+        "encouragement",
+        "daily-life",
+        "warm"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "오늘 하루를 버틴 사람에게 건네는 작은 위로",
+      "notes": "Excellent end-of-day and exam-season encouragement seed.",
+      "priority": 93
+    },
+    {
+      "id": "paul-kim-every-day-every-moment",
+      "title": "모든 날, 모든 순간",
+      "artist": "폴킴",
+      "appleMusicSearchTerm": "폴킴 모든 날 모든 순간",
+      "eventTags": [
+        "valentines-day",
+        "white-day",
+        "parents-day",
+        "christmas"
+      ],
+      "dateTags": [
+        "02-14",
+        "03-14",
+        "05-08",
+        "12-25"
+      ],
+      "moodTags": [
+        "romantic",
+        "warm",
+        "gratitude",
+        "sentimental"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "소중한 사람과의 매 순간을 떠올리는 따뜻함",
+      "notes": "Versatile romance and gratitude recommendation.",
+      "priority": 89
+    },
+    {
+      "id": "melonance-gift",
+      "title": "선물",
+      "artist": "멜로망스",
+      "appleMusicSearchTerm": "멜로망스 선물",
+      "eventTags": [
+        "valentines-day",
+        "white-day",
+        "parents-day",
+        "christmas"
+      ],
+      "dateTags": [
+        "02-14",
+        "03-14",
+        "05-08",
+        "12-25"
+      ],
+      "moodTags": [
+        "gift",
+        "romantic",
+        "warm",
+        "gratitude",
+        "bright"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "누군가가 선물처럼 느껴지는 따뜻한 감정",
+      "notes": "Useful for gift-related dates and affectionate moods.",
+      "priority": 87
+    },
+    {
+      "id": "newjeans-ditto",
+      "title": "Ditto",
+      "artist": "NewJeans",
+      "appleMusicSearchTerm": "NewJeans Ditto",
+      "eventTags": [
+        "first-snow-season",
+        "graduation-season",
+        "spring-campus-season"
+      ],
+      "dateTags": [
+        "12-01",
+        "02-10",
+        "03-02",
+        "school"
+      ],
+      "moodTags": [
+        "youth",
+        "nostalgic",
+        "winter",
+        "school",
+        "longing"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "겨울 학교 복도처럼 아련한 청춘감",
+      "notes": "Modern youth nostalgia for winter and school transition periods.",
+      "priority": 91
+    },
+    {
+      "id": "jannabi-for-lovers",
+      "title": "주저하는 연인들을 위해",
+      "artist": "잔나비",
+      "appleMusicSearchTerm": "잔나비 주저하는 연인들을 위해",
+      "eventTags": [
+        "valentines-day",
+        "white-day",
+        "autumn-foliage-season"
+      ],
+      "dateTags": [
+        "02-14",
+        "03-14",
+        "10-20",
+        "romance"
+      ],
+      "moodTags": [
+        "romantic",
+        "retro",
+        "hesitant",
+        "nostalgic",
+        "autumn"
+      ],
+      "locale": "ko-KR",
+      "lyricHint": "망설이는 마음과 오래된 영화 같은 낭만",
+      "notes": "Strong for mature romance and autumn dates.",
+      "priority": 85
+    },
+    {
+      "id": "earth-wind-fire-september",
+      "title": "September",
+      "artist": "Earth, Wind & Fire",
+      "appleMusicSearchTerm": "Earth Wind & Fire September",
+      "eventTags": [
+        "autumn-foliage-season"
+      ],
+      "dateTags": [
+        "09-21",
+        "september",
+        "autumn"
+      ],
+      "moodTags": [
+        "autumn",
+        "party",
+        "bright",
+        "classic",
+        "global"
+      ],
+      "locale": "global",
+      "lyricHint": "Do you remember the 21st night of September",
+      "notes": "Global classic with a direct September 21 lyric reference.",
+      "priority": 99
+    },
+    {
+      "id": "u2-new-years-day",
+      "title": "New Year's Day",
+      "artist": "U2",
+      "appleMusicSearchTerm": "U2 New Year's Day",
+      "eventTags": [
+        "new-years-day"
+      ],
+      "dateTags": [
+        "01-01",
+        "january",
+        "winter"
+      ],
+      "moodTags": [
+        "new-start",
+        "winter",
+        "anthemic",
+        "global"
+      ],
+      "locale": "global",
+      "lyricHint": "A direct New Year's Day title for January 1.",
+      "notes": "Global rock title match for New Year's Day.",
+      "priority": 88
+    },
+    {
+      "id": "sufjan-fourth-of-july",
+      "title": "Fourth of July",
+      "artist": "Sufjan Stevens",
+      "appleMusicSearchTerm": "Sufjan Stevens Fourth of July",
+      "eventTags": [],
+      "dateTags": [
+        "07-04",
+        "july",
+        "summer"
+      ],
+      "moodTags": [
+        "summer",
+        "quiet",
+        "reflective",
+        "global"
+      ],
+      "locale": "global",
+      "lyricHint": "Fourth of July appears directly in the title.",
+      "notes": "Global date-title match for July 4.",
+      "priority": 86
+    },
+    {
+      "id": "green-day-wake-me-up-september",
+      "title": "Wake Me Up When September Ends",
+      "artist": "Green Day",
+      "appleMusicSearchTerm": "Green Day Wake Me Up When September Ends",
+      "eventTags": [
+        "autumn-foliage-season"
+      ],
+      "dateTags": [
+        "september",
+        "autumn"
+      ],
+      "moodTags": [
+        "autumn",
+        "melancholy",
+        "rock",
+        "global"
+      ],
+      "locale": "global",
+      "lyricHint": "September is directly stated in the title.",
+      "notes": "Global September mood track.",
+      "priority": 84
+    },
+    {
+      "id": "simon-garfunkel-april",
+      "title": "April Come She Will",
+      "artist": "Simon & Garfunkel",
+      "appleMusicSearchTerm": "Simon Garfunkel April Come She Will",
+      "eventTags": [
+        "cherry-blossom-season"
+      ],
+      "dateTags": [
+        "april",
+        "spring"
+      ],
+      "moodTags": [
+        "spring",
+        "folk",
+        "gentle",
+        "global"
+      ],
+      "locale": "global",
+      "lyricHint": "April is directly stated in the title.",
+      "notes": "Global spring date-title reference.",
+      "priority": 80
+    },
+    {
+      "id": "taylor-swift-back-to-december",
+      "title": "Back to December",
+      "artist": "Taylor Swift",
+      "appleMusicSearchTerm": "Taylor Swift Back to December",
+      "eventTags": [
+        "year-end-season",
+        "first-snow-season"
+      ],
+      "dateTags": [
+        "december",
+        "winter",
+        "year-end"
+      ],
+      "moodTags": [
+        "winter",
+        "nostalgic",
+        "regret",
+        "global"
+      ],
+      "locale": "global",
+      "lyricHint": "December is directly stated in the title.",
+      "notes": "Global winter and year-end title match.",
+      "priority": 87
+    },
+    {
+      "id": "frankie-valli-december-1963",
+      "title": "December, 1963 (Oh What a Night)",
+      "artist": "Frankie Valli & The Four Seasons",
+      "appleMusicSearchTerm": "Frankie Valli December 1963 Oh What a Night",
+      "eventTags": [
+        "year-end-season"
+      ],
+      "dateTags": [
+        "december",
+        "winter",
+        "year-end"
+      ],
+      "moodTags": [
+        "party",
+        "nostalgic",
+        "classic",
+        "global"
+      ],
+      "locale": "global",
+      "lyricHint": "December is directly stated in the title.",
+      "notes": "Global December party classic.",
+      "priority": 86
+    },
+    {
+      "id": "prince-1999",
+      "title": "1999",
+      "artist": "Prince",
+      "appleMusicSearchTerm": "Prince 1999",
+      "eventTags": [
+        "year-end-season",
+        "new-years-day"
+      ],
+      "dateTags": [
+        "12-31",
+        "01-01",
+        "year-end",
+        "new-start"
+      ],
+      "moodTags": [
+        "party",
+        "year-end",
+        "global",
+        "dance"
+      ],
+      "locale": "global",
+      "lyricHint": "Year-end countdown energy for New Year's Eve.",
+      "notes": "Global party fallback for December 31 and New Year transition.",
+      "priority": 83
+    },
+    {
+      "id": "beatles-here-comes-the-sun",
+      "title": "Here Comes The Sun",
+      "artist": "The Beatles",
+      "appleMusicSearchTerm": "The Beatles Here Comes The Sun",
+      "eventTags": [
+        "spring-campus-season",
+        "cherry-blossom-season"
+      ],
+      "dateTags": [
+        "spring",
+        "april",
+        "march"
+      ],
+      "moodTags": [
+        "spring",
+        "hopeful",
+        "bright",
+        "global"
+      ],
+      "locale": "global",
+      "lyricHint": "Spring return and brighter days.",
+      "notes": "Global spring fallback with broad popularity.",
+      "priority": 82
+    },
+    {
+      "id": "billie-eilish-ocean-eyes",
+      "title": "ocean eyes",
+      "artist": "Billie Eilish",
+      "appleMusicSearchTerm": "Billie Eilish ocean eyes",
+      "eventTags": [
+        "summer-vacation"
+      ],
+      "dateTags": [
+        "summer",
+        "vacation"
+      ],
+      "moodTags": [
+        "summer",
+        "water",
+        "dreamy",
+        "global"
+      ],
+      "locale": "global",
+      "lyricHint": "Ocean imagery for summer travel dates.",
+      "notes": "Global summer mood fallback.",
+      "priority": 76
+    }
+  ]
+}
