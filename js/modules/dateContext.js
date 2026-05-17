@@ -13,6 +13,49 @@ import { getEventsData } from "./localDataRegistry.js";
 
 const NEARBY_EVENT_WINDOW_DAYS = 7;
 
+const SPECIAL_DATE_LABELS = {
+  "03-10": {
+    tags: ["0310", "date-code-0310", "march-10", "spring-night"],
+    moodTags: ["quiet", "spring", "longing", "intimate"],
+    searchKeywords: ["0310", "3월10일", "백예린", "봄밤"]
+  },
+  "04-01": {
+    tags: ["april-fools", "playful-date"],
+    moodTags: ["playful", "bright", "witty"],
+    searchKeywords: ["만우절", "장난", "웃음"]
+  },
+  "04-14": {
+    tags: ["black-day", "single-life", "jjajangmyeon-day"],
+    moodTags: ["single-life", "playful", "bittersweet"],
+    searchKeywords: ["블랙데이", "짜장면", "솔로"]
+  },
+  "05-14": {
+    tags: ["rose-day", "romance-date"],
+    moodTags: ["romantic", "spring", "flower"],
+    searchKeywords: ["로즈데이", "장미", "연애"]
+  },
+  "06-14": {
+    tags: ["kiss-day", "romance-date"],
+    moodTags: ["romantic", "sweet", "summer"],
+    searchKeywords: ["키스데이", "연애", "고백"]
+  },
+  "10-31": {
+    tags: ["halloween", "spooky-night"],
+    moodTags: ["night", "playful", "dramatic"],
+    searchKeywords: ["할로윈", "밤", "파티"]
+  },
+  "12-24": {
+    tags: ["christmas-eve", "holiday-eve", "winter-romance"],
+    moodTags: ["christmas", "winter", "romantic", "cozy", "anticipation"],
+    searchKeywords: ["크리스마스 이브", "Christmas Eve", "캐럴", "겨울밤"]
+  },
+  "12-31": {
+    tags: ["new-years-eve", "countdown", "year-closing"],
+    moodTags: ["year-end", "farewell", "party", "reflective"],
+    searchKeywords: ["새해 전야", "카운트다운", "연말"]
+  }
+};
+
 export function getEventContextFromDate(date) {
   const selectedDate = parseSelectedDate(date);
   const eventData = getEventsData();
@@ -25,7 +68,11 @@ export function getEventContextFromDate(date) {
     const match = getEventMatch(event, selectedDate);
 
     if (match.isExact) {
-      if (event.type === "seasonal-range" || event.type === "life-period") {
+      const isRangeContext =
+        event.type === "seasonal-range" ||
+        (event.type === "life-period" && event.dateRule?.kind === "month-day-range");
+
+      if (isRangeContext) {
         seasonalEvents.push({ ...event, match });
       } else {
         exactEvents.push({ ...event, match });
@@ -38,16 +85,19 @@ export function getEventContextFromDate(date) {
     }
   }
 
-  const primaryEvent = choosePrimaryEvent(exactEvents, seasonalEvents, nearbyEvents);
-  const allMatchedEvents = [...exactEvents, ...seasonalEvents, ...nearbyEvents];
+  const primaryEvent = choosePrimaryEvent(exactEvents, seasonalEvents);
+  const activeEvents = [...exactEvents, ...seasonalEvents];
   const season = getSeasonName(selectedDate);
+  const dateLabels = getDateLabels(selectedDate, season, exactEvents, seasonalEvents);
   const moodTags = uniqueStrings([
     season,
-    ...allMatchedEvents.flatMap((event) => event.moodTags || [])
+    ...dateLabels.moodTags,
+    ...activeEvents.flatMap((event) => event.moodTags || [])
   ]);
   const searchKeywords = uniqueStrings([
-    ...allMatchedEvents.flatMap((event) => event.searchKeywords || []),
-    ...allMatchedEvents.flatMap((event) => [
+    ...dateLabels.searchKeywords,
+    ...activeEvents.flatMap((event) => event.searchKeywords || []),
+    ...activeEvents.flatMap((event) => [
       event.labels?.ko,
       event.labels?.en,
       event.id
@@ -58,8 +108,9 @@ export function getEventContextFromDate(date) {
     toISODate(selectedDate),
     toMonthDay(selectedDate),
     season,
-    ...allMatchedEvents.map((event) => event.id),
-    ...allMatchedEvents.flatMap((event) => event.relatedDateTags || [])
+    ...dateLabels.tags,
+    ...activeEvents.map((event) => event.id),
+    ...activeEvents.flatMap((event) => event.relatedDateTags || [])
   ]);
 
   return {
@@ -79,6 +130,7 @@ export function getEventContextFromDate(date) {
     exactEvents,
     seasonalEvents,
     nearbyEvents: nearbyEvents.sort(sortByNearbyDistanceThenWeight),
+    dateLabels,
     moodTags,
     searchKeywords,
     relatedDateTags,
@@ -154,8 +206,9 @@ function getEventMatch(event, selectedDate) {
   return noMatch();
 }
 
-function choosePrimaryEvent(exactEvents, seasonalEvents, nearbyEvents) {
-  const sorted = [...exactEvents, ...seasonalEvents, ...nearbyEvents].sort((a, b) => {
+function choosePrimaryEvent(exactEvents, seasonalEvents) {
+  const source = exactEvents.length > 0 ? exactEvents : seasonalEvents;
+  const sorted = [...source].sort((a, b) => {
     const distanceDelta = (a.match.nearbyDistance || 0) - (b.match.nearbyDistance || 0);
     if (distanceDelta !== 0) return distanceDelta;
 
@@ -176,6 +229,156 @@ function choosePrimaryEvent(exactEvents, seasonalEvents, nearbyEvents) {
     relatedDateTags: event.relatedDateTags || [],
     match: event.match
   };
+}
+
+function getDateLabels(date, season, exactEvents, seasonalEvents) {
+  const iso = toISODate(date);
+  const monthDay = toMonthDay(date);
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const paddedMonth = String(month).padStart(2, "0");
+  const paddedDay = String(day).padStart(2, "0");
+  const dateCode = `${paddedMonth}${paddedDay}`;
+  const looseDateCode = `${month}${paddedDay}`;
+  const dayOfWeek = date.getDay();
+  const dayOfYear = getDayOfYear(date);
+  const weekOfMonth = Math.ceil(day / 7);
+  const monthLabel = `month-${String(month).padStart(2, "0")}`;
+  const dayLabel = `day-${String(day).padStart(2, "0")}`;
+  const weekdayLabel = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"][dayOfWeek];
+  const monthPhase = getMonthPhase(date);
+  const seasonPhase = getSeasonPhase(month, day);
+  const special = SPECIAL_DATE_LABELS[monthDay] || {};
+  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+  const hasHoliday = exactEvents.some((event) => event.publicHoliday);
+  const hasExactCulturalEvent = exactEvents.length > 0;
+  const hasSeasonalContext = seasonalEvents.length > 0;
+
+  const tags = uniqueStrings([
+    iso,
+    monthDay,
+    dateCode,
+    looseDateCode,
+    `date-code-${dateCode}`,
+    "date-code-title",
+    monthLabel,
+    dayLabel,
+    `weekday-${weekdayLabel}`,
+    isWeekend ? "weekend" : "weekday",
+    `week-${weekOfMonth}`,
+    monthPhase,
+    season,
+    seasonPhase,
+    ...(special.tags || []),
+    `day-of-year-${dayOfYear}`,
+    `rotation-${String(dayOfYear).padStart(3, "0")}`,
+    hasHoliday ? "public-holiday" : "",
+    hasExactCulturalEvent ? "exact-cultural-date" : "",
+    hasSeasonalContext ? "seasonal-context" : ""
+  ]);
+
+  const moodTags = uniqueStrings([
+    isWeekend ? "weekend" : "weekday",
+    "date-code-title",
+    monthPhase,
+    seasonPhase,
+    ...(special.moodTags || []),
+    hasHoliday ? "holiday" : "",
+    hasExactCulturalEvent ? "cultural-date" : ""
+  ]);
+
+  const searchKeywords = uniqueStrings([
+    monthLabel,
+    dayLabel,
+    dateCode,
+    looseDateCode,
+    weekdayLabel,
+    isWeekend ? "주말" : "평일",
+    getMonthName(month),
+    getKoreanMonthName(month),
+    monthPhase,
+    seasonPhase,
+    ...(special.searchKeywords || [])
+  ]);
+
+  return {
+    tags,
+    moodTags,
+    searchKeywords,
+    monthLabel,
+    dayLabel,
+    dateCode,
+    looseDateCode,
+    weekdayLabel,
+    monthPhase,
+    seasonPhase,
+    dayOfYear,
+    weekOfMonth,
+    isWeekend,
+    hasHoliday,
+    hasExactCulturalEvent,
+    hasSeasonalContext
+  };
+}
+
+function getDayOfYear(date) {
+  const start = Date.UTC(date.getFullYear(), 0, 1);
+  const current = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+  return Math.floor((current - start) / 86400000) + 1;
+}
+
+function getMonthPhase(date) {
+  const day = date.getDate();
+  const lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+
+  if (day === 1) return "month-opening";
+  if (day <= 7) return "early-month";
+  if (day >= lastDate - 2) return "month-closing";
+  if (day >= 22) return "late-month";
+  if (day >= 14 && day <= 17) return "mid-month";
+  return "steady-month";
+}
+
+function getSeasonPhase(month, day) {
+  const monthDay = `${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+  if (isMonthDayInRange(monthDay, "03-01", "03-20")) return "early-spring";
+  if (isMonthDayInRange(monthDay, "04-01", "04-20")) return "spring-peak";
+  if (isMonthDayInRange(monthDay, "05-10", "05-31")) return "late-spring";
+  if (isMonthDayInRange(monthDay, "06-01", "06-19")) return "early-summer";
+  if (isMonthDayInRange(monthDay, "06-20", "07-20")) return "rainy-summer";
+  if (isMonthDayInRange(monthDay, "07-21", "08-15")) return "peak-summer";
+  if (isMonthDayInRange(monthDay, "08-16", "08-31")) return "late-summer";
+  if (isMonthDayInRange(monthDay, "09-01", "09-23")) return "early-autumn";
+  if (isMonthDayInRange(monthDay, "09-24", "10-15")) return "harvest-autumn";
+  if (isMonthDayInRange(monthDay, "10-16", "11-10")) return "deep-autumn";
+  if (isMonthDayInRange(monthDay, "11-11", "11-30")) return "late-autumn";
+  if (isMonthDayInRange(monthDay, "12-01", "12-14")) return "early-winter";
+  if (isMonthDayInRange(monthDay, "12-15", "12-31")) return "year-end";
+  if (isMonthDayInRange(monthDay, "01-01", "01-12")) return "new-year";
+  if (isMonthDayInRange(monthDay, "01-13", "01-31")) return "deep-winter";
+  return "winter-to-spring";
+}
+
+function getMonthName(month) {
+  return [
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december"
+  ][month - 1];
+}
+
+function getKoreanMonthName(month) {
+  return `${month}월`;
 }
 
 function distanceToMonthDay(selectedDate, monthDay) {

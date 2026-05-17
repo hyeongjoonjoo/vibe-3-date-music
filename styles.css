@@ -256,16 +256,6 @@ input:focus-visible {
   font-weight: 800;
 }
 
-.date-form button {
-  min-height: 44px;
-  border-radius: 999px;
-  background: var(--color-yellow);
-  color: var(--color-ink);
-  padding: 0 20px;
-  font-weight: 950;
-  white-space: nowrap;
-}
-
 .calendar-shell {
   position: relative;
   width: min(100%, calc((var(--calendar-cell) * 7) + (var(--calendar-gap) * 6)));
@@ -332,15 +322,25 @@ input:focus-visible {
 
 .date-cell--muted {
   background: #30312f;
-  color: #666864;
+  color: rgb(244 244 238 / 0.34);
+  opacity: 0.82;
+}
+
+.date-cell--holiday {
+  background: var(--color-yellow);
+  color: var(--color-ink);
 }
 
 .date-cell--event {
-  background: var(--color-yellow);
+  background: var(--color-cyan);
+  color: var(--color-ink);
 }
 
-.date-cell--season {
-  background: var(--color-disc-muted);
+.date-cell--muted.date-cell--holiday,
+.date-cell--muted.date-cell--event {
+  background: #30312f;
+  color: rgb(244 244 238 / 0.34);
+  opacity: 0.82;
 }
 
 .date-cell--selected {
@@ -350,8 +350,8 @@ input:focus-visible {
   box-shadow: 0 0 0 1px var(--color-text), 0 18px 38px rgb(0 0 0 / 0.34);
 }
 
-.date-cell--event::after,
-.date-cell--season::after {
+.date-cell--holiday::after,
+.date-cell--event::after {
   content: none;
 }
 
@@ -393,7 +393,7 @@ input:focus-visible {
 .recommendation-card {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(132px, 170px);
+  grid-template-columns: minmax(116px, 178px) minmax(0, 1fr);
   gap: 22px;
   overflow: hidden;
   min-height: clamp(220px, 25vh, 292px);
@@ -421,8 +421,48 @@ input:focus-visible {
   z-index: 1;
 }
 
+.album-art {
+  align-self: start;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--color-cyan);
+  box-shadow: 0 18px 34px rgb(0 0 0 / 0.16);
+}
+
+.album-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.album-art--placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--color-ink);
+  font-size: clamp(2.2rem, 4vw, 4.2rem);
+  font-weight: 950;
+  letter-spacing: -0.05em;
+}
+
 .track-kicker {
   color: rgb(22 23 21 / 0.62);
+}
+
+.occasion-label {
+  display: inline-flex;
+  width: fit-content;
+  margin: 10px 0 0;
+  border-radius: 999px;
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  padding: 7px 12px;
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
 }
 
 .recommendation-card h3 {
@@ -443,6 +483,16 @@ input:focus-visible {
   text-transform: uppercase;
 }
 
+.track-reason {
+  max-width: min(680px, 74%);
+  margin: 18px 0 0;
+  color: rgb(22 23 21 / 0.72);
+  font-size: clamp(0.92rem, 1.35vw, 1.18rem);
+  font-weight: 850;
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
 .reason-row {
   flex-wrap: wrap;
   gap: 8px;
@@ -461,23 +511,11 @@ input:focus-visible {
 
 .score-block {
   display: grid;
-  align-content: start;
-  justify-items: end;
+  align-content: end;
+  justify-items: start;
   gap: 4px;
   color: var(--color-ink);
-}
-
-.score-block__value {
-  font-size: clamp(2.3rem, 4vw, 4.4rem);
-  font-weight: 950;
-  line-height: 0.88;
-  letter-spacing: -0.04em;
-}
-
-.score-block__label {
-  font-size: 0.72rem;
-  font-weight: 950;
-  text-transform: uppercase;
+  grid-column: 2;
 }
 
 .track-link {
@@ -581,12 +619,11 @@ input:focus-visible {
 
   .date-form__row {
     display: grid;
-    grid-template-columns: minmax(280px, 452px) 166px;
+    grid-template-columns: minmax(280px, 452px);
     align-items: center;
   }
 
-  .date-form input,
-  .date-form button {
+  .date-form input {
     min-height: 48px;
     font-size: 1rem;
   }
@@ -615,7 +652,7 @@ input:focus-visible {
   }
 
   .recommendation-card {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(112px, 152px) minmax(0, 1fr);
     min-height: clamp(230px, 28vh, 320px);
     padding: clamp(22px, 2.1vw, 32px);
   }
@@ -626,6 +663,7 @@ input:focus-visible {
 
   .score-block {
     justify-items: start;
+    grid-column: 2;
   }
 
   .site-footer {
@@ -707,6 +745,10 @@ input:focus-visible {
   .reason-row {
     margin-top: 14px;
   }
+
+  .track-reason {
+    max-width: min(620px, 78%);
+  }
 }
 
 @media (max-width: 760px) {
@@ -749,6 +791,10 @@ input:focus-visible {
     border-radius: 30px;
   }
 
+  .album-art {
+    width: min(210px, 64vw);
+  }
+
   .recommendation-card::before {
     right: -28px;
     top: auto;
@@ -757,7 +803,12 @@ input:focus-visible {
     transform: none;
   }
 
+  .track-reason {
+    max-width: 100%;
+  }
+
   .score-block {
     justify-items: start;
+    grid-column: auto;
   }
 }

@@ -97,6 +97,18 @@ export const EVENTS_KO = {
       notes: "Romance and confession follow-up day."
     },
     {
+      id: "black-day",
+      type: "fixed-date",
+      labels: { ko: "블랙데이", en: "Black Day" },
+      dateRule: { kind: "month-day", monthDay: "04-14" },
+      publicHoliday: false,
+      weight: 46,
+      moodTags: ["single-life", "playful", "bittersweet", "spring"],
+      searchKeywords: ["블랙데이", "짜장면", "솔로", "혼자", "봄"],
+      relatedDateTags: ["04-14", "single-life", "black-day"],
+      notes: "Korean commercial day associated with single-life humor and jjajangmyeon."
+    },
+    {
       id: "cherry-blossom-season",
       type: "seasonal-range",
       labels: { ko: "벚꽃 시즌", en: "Cherry Blossom Season" },
@@ -145,6 +157,18 @@ export const EVENTS_KO = {
       notes: "Emotionally warm family-centered day."
     },
     {
+      id: "rose-day",
+      type: "fixed-date",
+      labels: { ko: "로즈데이", en: "Rose Day" },
+      dateRule: { kind: "month-day", monthDay: "05-14" },
+      publicHoliday: false,
+      weight: 48,
+      moodTags: ["romantic", "flower", "spring", "date"],
+      searchKeywords: ["로즈데이", "장미", "연애", "꽃", "고백"],
+      relatedDateTags: ["05-14", "romance", "flower"],
+      notes: "Light Korean romance marker for May."
+    },
+    {
       id: "teachers-day",
       type: "fixed-date",
       labels: { ko: "스승의 날", en: "Teacher's Day" },
@@ -167,6 +191,18 @@ export const EVENTS_KO = {
       searchKeywords: ["현충일", "추모", "기억", "묵념", "희생"],
       relatedDateTags: ["06-06", "memorial", "national-holiday"],
       notes: "Avoid overly playful recommendations."
+    },
+    {
+      id: "kiss-day",
+      type: "fixed-date",
+      labels: { ko: "키스데이", en: "Kiss Day" },
+      dateRule: { kind: "month-day", monthDay: "06-14" },
+      publicHoliday: false,
+      weight: 46,
+      moodTags: ["romantic", "sweet", "summer", "date"],
+      searchKeywords: ["키스데이", "연애", "고백", "데이트"],
+      relatedDateTags: ["06-14", "romance", "summer"],
+      notes: "Commercial romance date recognized in Korean youth culture."
     },
     {
       id: "jangma-rainy-season",
@@ -286,6 +322,18 @@ export const EVENTS_KO = {
       notes: "Light romance and friendship recommendations."
     },
     {
+      id: "halloween",
+      type: "fixed-date",
+      labels: { ko: "할로윈", en: "Halloween" },
+      dateRule: { kind: "month-day", monthDay: "10-31" },
+      publicHoliday: false,
+      weight: 50,
+      moodTags: ["night", "playful", "dramatic", "party"],
+      searchKeywords: ["할로윈", "Halloween", "밤", "파티", "분장"],
+      relatedDateTags: ["10-31", "halloween", "night"],
+      notes: "Urban party and playful night mood, not a public holiday."
+    },
+    {
       id: "college-entrance-exam-season",
       type: "life-period",
       labels: { ko: "수능 시즌", en: "College Entrance Exam Season" },
@@ -331,6 +379,18 @@ export const EVENTS_KO = {
       notes: "Reflection, farewell, party, or cozy tracks."
     },
     {
+      id: "christmas-eve",
+      type: "fixed-date",
+      labels: { ko: "크리스마스 이브", en: "Christmas Eve" },
+      dateRule: { kind: "month-day", monthDay: "12-24" },
+      publicHoliday: false,
+      weight: 86,
+      moodTags: ["winter", "romantic", "cozy", "christmas", "anticipation"],
+      searchKeywords: ["크리스마스 이브", "Christmas Eve", "캐럴", "겨울밤", "데이트"],
+      relatedDateTags: ["12-24", "christmas-eve", "holiday", "winter"],
+      notes: "Distinct Christmas Eve label for romance, anticipation, and winter-night recommendations."
+    },
+    {
       id: "christmas",
       type: "fixed-date",
       labels: { ko: "크리스마스", en: "Christmas" },
@@ -341,6 +401,18 @@ export const EVENTS_KO = {
       searchKeywords: ["크리스마스", "겨울", "캐럴", "연말", "눈"],
       relatedDateTags: ["12-25", "winter", "holiday"],
       notes: "Strong seasonal and holiday recommendation anchor."
+    },
+    {
+      id: "new-years-eve",
+      type: "fixed-date",
+      labels: { ko: "새해 전야", en: "New Year's Eve" },
+      dateRule: { kind: "month-day", monthDay: "12-31" },
+      publicHoliday: false,
+      weight: 84,
+      moodTags: ["year-end", "farewell", "party", "reflective", "countdown"],
+      searchKeywords: ["새해 전야", "New Year's Eve", "카운트다운", "연말", "송년"],
+      relatedDateTags: ["12-31", "new-years-eve", "year-end", "countdown"],
+      notes: "Exact date marker for countdown, farewell, and reflective party tracks."
     }
   ]
 };

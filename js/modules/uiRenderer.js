@@ -7,10 +7,33 @@ const EVENT_ROUTE_MAP = {
   seollal: "S",
   "childrens-day": "K",
   "parents-day": "F",
+  "teachers-day": "T",
   "memorial-day": "M",
   "liberation-day": "L",
   "independence-movement-day": "I"
 };
+
+const FEATURED_OCCASION_IDS = new Set([
+  "childrens-day",
+  "parents-day",
+  "teachers-day",
+  "valentines-day",
+  "white-day",
+  "black-day",
+  "rose-day",
+  "kiss-day",
+  "pepero-day",
+  "hangeul-day",
+  "memorial-day",
+  "liberation-day",
+  "independence-movement-day",
+  "constitution-day",
+  "halloween",
+  "christmas-eve",
+  "christmas",
+  "new-years-eve",
+  "new-years-day"
+]);
 
 export function createUIRenderer(root = document) {
   const $ = (selector) => root.querySelector(selector);
@@ -70,8 +93,8 @@ function renderCalendar(elements, state) {
     const classes = [
       "date-cell",
       cell.inMonth ? "" : "date-cell--muted",
-      cell.event ? "date-cell--event" : "",
-      cell.seasonal ? "date-cell--season" : "",
+      cell.publicHoliday ? "date-cell--holiday" : "",
+      cell.eventDay ? "date-cell--event" : "",
       cell.selected ? "date-cell--selected" : ""
     ].filter(Boolean).join(" ");
     const current = cell.selected ? ' aria-current="date"' : "";
@@ -111,27 +134,46 @@ function renderRecommendations(elements, state) {
   const recommendations = state.recommendations.slice(0, state.maxRecommendations);
 
   elements.recommendationList.innerHTML = recommendations.map((item, index) => {
-    const chips = buildReasonChips(item, state.context);
+    const occasion = getFeaturedOccasion(state.context);
+    const reason = buildRecommendationNarrative(item, state.context, occasion);
     const link = buildAppleMusicLink(item);
 
     return `
       <li class="recommendation-card">
+        ${renderArtwork(item)}
         <div class="track-main">
           <p class="track-kicker">${escapeHtml(index === 0 ? "Best match" : getRecommendationLabel(item))}</p>
+          ${occasion ? `<p class="occasion-label">${escapeHtml(occasion)}</p>` : ""}
           <h3>${escapeHtml(item.title)}</h3>
           <p class="track-artist">${escapeHtml(item.artist)}</p>
-          <div class="reason-row" aria-label="Recommendation reasons">
-            ${chips.map((chip) => `<span class="chip">${escapeHtml(chip)}</span>`).join("")}
-          </div>
+          <p class="track-reason">${escapeHtml(reason)}</p>
         </div>
-        <div class="score-block" aria-label="Recommendation score">
-          <span class="score-block__value">${Math.round(item.score)}</span>
-          <span class="score-block__label">score</span>
+        <div class="score-block" aria-label="Apple Music action">
           <a class="track-link" href="${escapeAttribute(link)}" target="_blank" rel="noreferrer">Apple Music</a>
         </div>
       </li>
     `;
   }).join("");
+}
+
+function renderArtwork(item) {
+  if (item.artworkUrl) {
+    return `
+      <figure class="album-art">
+        <img src="${escapeAttribute(item.artworkUrl)}" alt="${escapeAttribute(`${item.title} album cover`)}" loading="lazy">
+      </figure>
+    `;
+  }
+
+  return `
+    <figure class="album-art album-art--placeholder" aria-label="Album cover loading">
+      <span>${escapeHtml(getArtworkInitials(item))}</span>
+    </figure>
+  `;
+}
+
+function getArtworkInitials(item) {
+  return String(item.title || item.artist || "♪").trim().slice(0, 2).toUpperCase();
 }
 
 function renderMusicArea(elements, state) {
@@ -145,13 +187,73 @@ function renderMusicArea(elements, state) {
 }
 
 function buildReasonChips(item, context) {
-  const primary = context.primaryEvent?.labels?.ko;
+  const primary = getFeaturedOccasion(context);
   return [
     primary,
     ...item.moodTags.filter((tag) => context.moodTags.includes(tag)),
     ...item.eventTags.filter((tag) => context.relatedDateTags.includes(tag)),
     ...item.dateTags.filter((tag) => context.relatedDateTags.includes(tag))
   ].filter(Boolean).slice(0, 4);
+}
+
+function buildRecommendationNarrative(item, context, occasion) {
+  if ((item.scoreBreakdown?.lyricDateTextMatch || 0) > 0 && item.lyricDateExcerpt) {
+    return `가사에 오늘 날짜와 맞닿는 소절이 있습니다: "${cleanReasonText(item.lyricDateExcerpt)}".`;
+  }
+
+  if (occasion && hasEventMatch(item, context)) {
+    return `${occasion}에 맞춰 고른 곡입니다. ${cleanReasonText(item.lyricHint || item.notes || "이 날짜의 문화적 분위기와 노래의 정서가 직접 연결됩니다.")}`;
+  }
+
+  if ((item.scoreBreakdown?.directDateTextMatch || 0) > 0) {
+    return `${cleanReasonText(item.lyricHint || item.notes || "제목이나 설명 안에 선택한 날짜가 직접 등장해 날짜성이 강합니다.")}`;
+  }
+
+  const firstReason = (item.reasons || []).find((reason) => !reason.includes("Korean-language"));
+  if (firstReason) {
+    return translateReason(firstReason, item, context);
+  }
+
+  return `${translateSeason(context.season)}의 분위기와 ${item.artist}의 곡 색이 맞아 오늘의 보조 추천으로 배치했습니다.`;
+}
+
+function getFeaturedOccasion(context) {
+  const exactEvents = context.exactEvents || [];
+  const featured = exactEvents.filter((event) => {
+    return event.publicHoliday || FEATURED_OCCASION_IDS.has(event.id) || event.type === "fixed-date";
+  });
+
+  return featured
+    .map((event) => event.labels?.ko || event.id)
+    .filter(Boolean)
+    .join(" · ");
+}
+
+function hasEventMatch(item, context) {
+  const exactIds = (context.exactEvents || []).map((event) => event.id);
+  return (item.eventTags || []).some((tag) => exactIds.includes(tag));
+}
+
+function cleanReasonText(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function translateReason(reason, item, context) {
+  if (reason.includes("directly references")) {
+    return cleanReasonText(item.lyricHint || "제목이나 설명 안에 선택한 날짜가 직접 등장합니다.");
+  }
+
+  if (reason.includes("Selected date matches")) {
+    return `선택한 날짜와 곡의 날짜 태그가 맞습니다. ${cleanReasonText(item.lyricHint || "")}`.trim();
+  }
+
+  if (reason.includes("Connected to")) {
+    return `오늘의 기념일 맥락과 연결됩니다. ${cleanReasonText(item.lyricHint || "")}`.trim();
+  }
+
+  return `${translateSeason(context.season)}의 날짜감과 곡의 분위기가 맞습니다. ${cleanReasonText(item.lyricHint || "")}`.trim();
 }
 
 function buildEventSummary(context) {

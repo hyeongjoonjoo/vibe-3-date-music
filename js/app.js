@@ -7,7 +7,7 @@ import { buildSearchTerms, rankRecommendations } from "./modules/recommendationE
 import { createMusicProvider } from "./modules/musicProvider.js";
 import { createUIRenderer } from "./modules/uiRenderer.js";
 import { parseSelectedDate, toISODate } from "./modules/dateUtils.js";
-import { resolveAppleMusicTrackUrl } from "./modules/appleMusicLinkResolver.js";
+import { resolveAppleMusicTrack } from "./modules/appleMusicLinkResolver.js";
 
 configureLocalData({
   events: EVENTS_KO,
@@ -117,15 +117,17 @@ function buildAppleMusicSearchUrl(searchTerms, storefront) {
 
 async function enrichPrimaryRecommendationLink(isoDate) {
   const primary = state.recommendations[0];
-  if (!primary || primary.appleMusicUrl) return;
+  if (!primary || (primary.appleMusicUrl && primary.artworkUrl)) return;
 
-  const resolvedUrl = await resolveAppleMusicTrackUrl(primary, state.context.storefront);
-  if (!resolvedUrl || state.context.date.iso !== isoDate) return;
+  const resolvedTrack = await resolveAppleMusicTrack(primary, state.context.storefront);
+  if (state.context.date.iso !== isoDate) return;
+  if (!resolvedTrack.url && !resolvedTrack.artworkUrl) return;
 
   state.recommendations = [
     {
       ...primary,
-      appleMusicUrl: resolvedUrl
+      appleMusicUrl: resolvedTrack.url || primary.appleMusicUrl,
+      artworkUrl: resolvedTrack.artworkUrl || primary.artworkUrl
     },
     ...state.recommendations.slice(1)
   ];

@@ -1,6 +1,11 @@
 const resolvedLinkCache = new Map();
 
 export async function resolveAppleMusicTrackUrl(candidate, storefront = "kr") {
+  const track = await resolveAppleMusicTrack(candidate, storefront);
+  return track.url;
+}
+
+export async function resolveAppleMusicTrack(candidate, storefront = "kr") {
   const searchTerm = candidate.appleMusicSearchTerm || `${candidate.title} ${candidate.artist}`;
   const cacheKey = `${storefront}:${searchTerm}`.toLowerCase();
 
@@ -23,11 +28,23 @@ export async function resolveAppleMusicTrackUrl(candidate, storefront = "kr") {
     }
 
     const data = await response.json();
-    const url = data.results?.[0]?.trackViewUrl || "";
-    resolvedLinkCache.set(cacheKey, url);
-    return url;
+    const result = data.results?.[0];
+    const track = {
+      url: result?.trackViewUrl || "",
+      artworkUrl: normalizeArtworkUrl(result?.artworkUrl100 || "")
+    };
+    resolvedLinkCache.set(cacheKey, track);
+    return track;
   } catch {
-    resolvedLinkCache.set(cacheKey, "");
-    return "";
+    const emptyTrack = {
+      url: "",
+      artworkUrl: ""
+    };
+    resolvedLinkCache.set(cacheKey, emptyTrack);
+    return emptyTrack;
   }
+}
+
+function normalizeArtworkUrl(url) {
+  return String(url || "").replace("100x100bb", "600x600bb");
 }

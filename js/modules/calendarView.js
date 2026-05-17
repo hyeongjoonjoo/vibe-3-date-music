@@ -19,7 +19,8 @@ export function renderCalendarGrid({ selectedDate, events }) {
       label: String(current.getDate()),
       inMonth: current.getMonth() === month,
       selected: toISODate(current) === toISODate(date),
-      event: markers.event,
+      publicHoliday: markers.publicHoliday,
+      eventDay: markers.eventDay,
       seasonal: markers.seasonal,
       labelText: markers.labelText
     });
@@ -40,7 +41,8 @@ function getMarkersForDate(date, events) {
   const monthDay = toMonthDay(date);
   const year = String(date.getFullYear());
   const labels = [];
-  let event = false;
+  let publicHoliday = false;
+  let eventDay = false;
   let seasonal = false;
 
   for (const item of events) {
@@ -48,7 +50,11 @@ function getMarkersForDate(date, events) {
     const label = item.labels?.ko || item.id;
 
     if (rule.kind === "month-day" && rule.monthDay === monthDay) {
-      event = true;
+      if (item.publicHoliday) {
+        publicHoliday = true;
+      } else {
+        eventDay = true;
+      }
       labels.push(label);
     }
 
@@ -60,7 +66,11 @@ function getMarkersForDate(date, events) {
     if (rule.kind === "single-date-by-year") {
       const entry = rule.datesByYear?.[year];
       if (entry && (entry.mainDate === iso || (entry.observedDates || []).includes(iso))) {
-        event = true;
+        if (item.publicHoliday) {
+          publicHoliday = true;
+        } else {
+          eventDay = true;
+        }
         labels.push(label);
       }
     }
@@ -68,14 +78,19 @@ function getMarkersForDate(date, events) {
     if (rule.kind === "date-range-by-year") {
       const entry = rule.datesByYear?.[year];
       if (entry && iso >= entry.start && iso <= entry.end) {
-        event = true;
+        if (item.publicHoliday) {
+          publicHoliday = true;
+        } else {
+          eventDay = true;
+        }
         labels.push(label);
       }
     }
   }
 
   return {
-    event,
+    publicHoliday,
+    eventDay,
     seasonal,
     labelText: labels.join(", ")
   };
