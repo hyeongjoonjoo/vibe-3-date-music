@@ -56,19 +56,23 @@ function bindEvents() {
     setDateFormVisibility(false);
   });
 
+  ui.elements.dateInput.addEventListener("blur", () => {
+    setDateFormVisibility(false);
+  });
+
   ui.elements.topDateButton.addEventListener("click", () => {
     if (!state.todayContext) return;
     updateForDate(state.todayContext.date.iso);
   });
 
   ui.elements.selectedDateTitle.addEventListener("click", () => {
-    setDateFormVisibility(!ui.elements.dateForm.classList.contains("date-form--visible"));
+    openNativeDatePicker();
   });
 
   ui.elements.selectedDateTitle.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
     event.preventDefault();
-    setDateFormVisibility(!ui.elements.dateForm.classList.contains("date-form--visible"));
+    openNativeDatePicker();
   });
 
   document.addEventListener("click", (event) => {
@@ -127,6 +131,23 @@ function setDateFormVisibility(visible) {
   if (visible) {
     ui.elements.dateInput.focus();
   }
+}
+
+function openNativeDatePicker() {
+  ui.elements.dateForm.classList.add("date-form--visible");
+  ui.elements.selectedDateTitle.setAttribute("aria-expanded", "true");
+  ui.elements.dateInput.focus({ preventScroll: true });
+
+  if (typeof ui.elements.dateInput.showPicker === "function") {
+    try {
+      ui.elements.dateInput.showPicker();
+      return;
+    } catch {
+      // Some browsers require a visible/native click fallback for date inputs.
+    }
+  }
+
+  ui.elements.dateInput.click();
 }
 
 function ensureRecommendations(ranked) {
