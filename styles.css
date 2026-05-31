@@ -1173,6 +1173,8 @@ body {
 }
 
 .album-art--placeholder {
+  background: #f4f4ee;
+  color: #ccccc7;
   font-size: 5rem;
 }
 

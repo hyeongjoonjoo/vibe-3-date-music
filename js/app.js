@@ -42,6 +42,7 @@ async function bootstrap() {
   bindEvents();
   updateTodayNavigation();
   updateForDate(getInitialDate());
+  enrichTodayRecommendationLink();
 }
 
 function bindEvents() {
@@ -176,4 +177,25 @@ async function enrichPrimaryRecommendationLink(isoDate) {
     ...state.recommendations.slice(1)
   ];
   ui.render(state);
+}
+
+async function enrichTodayRecommendationLink() {
+  const todayRecommendation = state.todayRecommendation;
+  if (!todayRecommendation || (todayRecommendation.appleMusicUrl && todayRecommendation.artworkUrl)) return;
+
+  const resolvedTrack = await resolveAppleMusicTrack(
+    todayRecommendation,
+    state.todayContext?.storefront || "kr"
+  );
+  if (!resolvedTrack.url && !resolvedTrack.artworkUrl) return;
+
+  state.todayRecommendation = {
+    ...todayRecommendation,
+    appleMusicUrl: resolvedTrack.url || todayRecommendation.appleMusicUrl,
+    artworkUrl: resolvedTrack.artworkUrl || todayRecommendation.artworkUrl
+  };
+
+  if (state.context) {
+    ui.render(state);
+  }
 }
