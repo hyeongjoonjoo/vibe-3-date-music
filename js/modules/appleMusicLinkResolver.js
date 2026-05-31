@@ -1,6 +1,11 @@
+import { buildAppleMusicSearchLink, buildFallbackArtworkUrl } from "./appleMusicFallbacks.js";
+
 const resolvedLinkCache = new Map();
 const SEARCH_LIMIT = 10;
 const MIN_USABLE_SCORE = 65;
+const REQUEST_TIMEOUT_MS = 3500;
+const JSONP_TIMEOUT_MS = 2200;
+let itunesLookupUnavailable = false;
 
 export async function resolveAppleMusicTrackUrl(candidate, storefront = "kr") {
   const track = await resolveAppleMusicTrack(candidate, storefront);
@@ -44,17 +49,18 @@ export async function resolveAppleMusicTrack(candidate, storefront = "kr") {
   }
 
   const track = bestMatch && bestMatch.score >= MIN_USABLE_SCORE
-    ? normalizeTrack(bestMatch.result)
-    : {
-        url: "",
-        artworkUrl: ""
-      };
+    ? withFallbackFields(normalizeTrack(bestMatch.result), candidate, storefront)
+    : buildFallbackTrack(candidate, storefront);
 
   resolvedLinkCache.set(cacheKey, track);
   return track;
 }
 
 async function searchITunes(term, country) {
+  if (itunesLookupUnavailable) {
+    return [];
+  }
+
   const params = new URLSearchParams({
     term,
     country: country.toUpperCase(),
@@ -64,13 +70,29 @@ async function searchITunes(term, country) {
   });
 
   try {
-    const response = await fetch(`https://itunes.apple.com/search?${params.toString()}`);
-    if (!response.ok) return searchITunesJsonp(params);
+    const response = await fetchWithTimeout(`https://itunes.apple.com/search?${params.toString()}`);
+    if (!response.ok) {
+      if (response.status === 403 || response.status === 429) {
+        itunesLookupUnavailable = true;
+      }
+      return [];
+    }
 
     const data = await response.json();
     return Array.isArray(data.results) ? data.results : [];
   } catch {
     return searchITunesJsonp(params);
+  }
+}
+
+async function fetchWithTimeout(url) {
+  const controller = new AbortController();
+  const timeout = globalThis.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+  try {
+    return await fetch(url, { signal: controller.signal });
+  } finally {
+    globalThis.clearTimeout(timeout);
   }
 }
 
@@ -88,8 +110,9 @@ function searchITunesJsonp(params) {
     };
     const timeout = window.setTimeout(() => {
       cleanup();
+      itunesLookupUnavailable = true;
       resolve([]);
-    }, 6000);
+    }, JSONP_TIMEOUT_MS);
 
     window[callbackName] = (data) => {
       window.clearTimeout(timeout);
@@ -100,6 +123,7 @@ function searchITunesJsonp(params) {
     script.onerror = () => {
       window.clearTimeout(timeout);
       cleanup();
+      itunesLookupUnavailable = true;
       resolve([]);
     };
 
@@ -108,6 +132,21 @@ function searchITunesJsonp(params) {
     script.src = `https://itunes.apple.com/search?${jsonpParams.toString()}`;
     document.head.append(script);
   });
+}
+
+function buildFallbackTrack(candidate, storefront) {
+  return {
+    url: buildAppleMusicSearchLink(candidate, storefront),
+    artworkUrl: buildFallbackArtworkUrl(candidate)
+  };
+}
+
+function withFallbackFields(track, candidate, storefront) {
+  return {
+    ...track,
+    url: track.url || buildAppleMusicSearchLink(candidate, storefront),
+    artworkUrl: track.artworkUrl || buildFallbackArtworkUrl(candidate)
+  };
 }
 
 function normalizeTrack(result) {

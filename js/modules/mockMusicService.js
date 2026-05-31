@@ -1,4 +1,5 @@
 import { getSeedRecommendationsData } from "./localDataRegistry.js";
+import { buildAppleMusicSearchLink } from "./appleMusicFallbacks.js";
 
 export function createMockMusicService() {
   return {
@@ -74,8 +75,7 @@ export function normalizeMockTrack(candidate) {
 }
 
 export function buildMockTrackLink(track) {
-  const term = track.appleMusicSearchTerm || `${track.title || ""} ${track.artist || ""}`;
-  return `https://music.apple.com/kr/search?term=${encodeURIComponent(term.trim())}`;
+  return buildAppleMusicSearchLink(track, "kr");
 }
 
 function normalizeSearchValue(value) {
