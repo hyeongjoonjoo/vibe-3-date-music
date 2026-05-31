@@ -24,6 +24,8 @@ const state = {
   events: EVENTS_KO.events,
   context: null,
   recommendations: [],
+  todayContext: null,
+  todayRecommendation: null,
   providerMode: "demo",
   maxRecommendations: APP_CONFIG.maxRecommendations,
   appleMusicSearchUrl: "https://music.apple.com/kr/search"
@@ -38,6 +40,7 @@ async function bootstrap() {
     : "demo";
 
   bindEvents();
+  updateTodayNavigation();
   updateForDate(getInitialDate());
 }
 
@@ -49,6 +52,30 @@ function bindEvents() {
 
   ui.elements.dateInput.addEventListener("change", () => {
     updateForDate(ui.elements.dateInput.value);
+    setDateFormVisibility(false);
+  });
+
+  ui.elements.topDateButton.addEventListener("click", () => {
+    if (!state.todayContext) return;
+    updateForDate(state.todayContext.date.iso);
+  });
+
+  ui.elements.selectedDateTitle.addEventListener("click", () => {
+    setDateFormVisibility(!ui.elements.dateForm.classList.contains("date-form--visible"));
+  });
+
+  ui.elements.selectedDateTitle.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    setDateFormVisibility(!ui.elements.dateForm.classList.contains("date-form--visible"));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!ui.elements.dateForm.classList.contains("date-form--visible")) return;
+    if (ui.elements.dateForm.contains(event.target)) return;
+    if (ui.elements.selectedDateTitle.contains(event.target)) return;
+
+    setDateFormVisibility(false);
   });
 
   ui.elements.calendarGrid.addEventListener("click", (event) => {
@@ -70,6 +97,14 @@ function bindEvents() {
   });
 }
 
+function updateTodayNavigation() {
+  const todayContext = getEventContextFromDate(toISODate(new Date()));
+  const todayRecommendations = ensureRecommendations(rankRecommendations(SEED_RECOMMENDATIONS.songs, todayContext));
+
+  state.todayContext = todayContext;
+  state.todayRecommendation = todayRecommendations[0] || null;
+}
+
 function updateForDate(dateValue) {
   const context = getEventContextFromDate(dateValue);
   const ranked = rankRecommendations(SEED_RECOMMENDATIONS.songs, context);
@@ -82,6 +117,15 @@ function updateForDate(dateValue) {
   syncUrlDate(context.date.iso);
   ui.render(state);
   enrichPrimaryRecommendationLink(context.date.iso);
+}
+
+function setDateFormVisibility(visible) {
+  ui.elements.dateForm.classList.toggle("date-form--visible", visible);
+  ui.elements.selectedDateTitle.setAttribute("aria-expanded", String(visible));
+
+  if (visible) {
+    ui.elements.dateInput.focus();
+  }
 }
 
 function ensureRecommendations(ranked) {

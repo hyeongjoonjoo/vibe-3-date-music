@@ -39,6 +39,9 @@ export function createUIRenderer(root = document) {
   const $ = (selector) => root.querySelector(selector);
   const elements = {
     selectedDateTitle: $('[data-js="selected-date-title"]'),
+    topDateButton: $('[data-js="top-date-button"]'),
+    topSongLabel: $('[data-js="top-song-label"]'),
+    topSongLink: $('[data-js="top-song-link"]'),
     musicModeLabel: $('[data-js="music-mode-label"]'),
     dateForm: $('[data-js="date-form"]'),
     dateInput: $('[data-js="date-input"]'),
@@ -78,6 +81,14 @@ function renderHeader(elements, state) {
   const day = String(state.context.date.day).padStart(2, "0");
 
   elements.selectedDateTitle.textContent = `${dateTitle} ${day} ${state.context.date.year}`;
+  if (elements.topDateButton) {
+    const today = state.todayContext?.date || state.context.date;
+    const todayDay = String(today.day).padStart(2, "0");
+    const monthName = new Intl.DateTimeFormat("en-US", {
+      month: "short"
+    }).format(today.value);
+    elements.topDateButton.textContent = `Today: ${monthName} ${todayDay} ${today.year}`;
+  }
   elements.musicModeLabel.textContent = state.providerMode === "appleMusic" ? "Apple Music" : "Demo Mode";
   elements.dateInput.value = state.context.date.iso;
 }
@@ -132,6 +143,19 @@ function renderContext(elements, state) {
 
 function renderRecommendations(elements, state) {
   const recommendations = state.recommendations.slice(0, state.maxRecommendations);
+  const todayRecommendation = state.todayRecommendation;
+
+  if (elements.topSongLabel) {
+    elements.topSongLabel.textContent = todayRecommendation
+      ? `${todayRecommendation.title} - ${todayRecommendation.artist}`
+      : "Recommendation Song";
+  }
+
+  if (elements.topSongLink) {
+    elements.topSongLink.href = todayRecommendation
+      ? buildAppleMusicLink(todayRecommendation)
+      : "https://music.apple.com/kr/search";
+  }
 
   elements.recommendationList.innerHTML = recommendations.map((item, index) => {
     const occasion = getFeaturedOccasion(state.context);

@@ -17,14 +17,26 @@
     <div class="app-shell">
       <header class="site-header" aria-labelledby="app-title">
         <div class="system-line" aria-label="Application status">
-          <span class="route-badge route-badge--red">D</span>
-          <span class="system-line__text">Date Music System</span>
+          <span class="route-badge route-badge--red" aria-hidden="true">→</span>
+          <span class="system-line__text">Music Calendar</span>
+          <button class="system-line__date" type="button" data-js="top-date-button">Today</button>
+          <a class="system-line__song" href="https://music.apple.com/kr/search" target="_blank" rel="noreferrer" data-js="top-song-link">
+            <span data-js="top-song-label">Recommendation Song</span>
+          </a>
           <span class="system-line__status" data-js="music-mode-label">Demo Mode</span>
         </div>
 
         <div class="title-block">
           <p class="kicker">Selected Date</p>
-          <h1 id="app-title" data-js="selected-date-title">오늘 날짜</h1>
+          <h1 id="app-title" data-js="selected-date-title" role="button" tabindex="0" aria-controls="selected-date-form" aria-expanded="false">오늘 날짜</h1>
+          <div class="month-controls" aria-label="Calendar month controls">
+            <button class="icon-button" type="button" aria-label="Previous month" data-js="prev-month">
+              <span aria-hidden="true">←</span>
+            </button>
+            <button class="icon-button" type="button" aria-label="Next month" data-js="next-month">
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -35,17 +47,9 @@
               <p class="section-code">01</p>
               <h2 id="calendar-title">Calendar</h2>
             </div>
-            <div class="month-controls" aria-label="Calendar month controls">
-              <button class="icon-button" type="button" aria-label="Previous month" data-js="prev-month">
-                <span aria-hidden="true">←</span>
-              </button>
-              <button class="icon-button" type="button" aria-label="Next month" data-js="next-month">
-                <span aria-hidden="true">→</span>
-              </button>
-            </div>
           </div>
 
-          <form class="date-form" data-js="date-form">
+          <form id="selected-date-form" class="date-form" data-js="date-form" aria-label="Select a date">
             <label for="selected-date">Choose a date</label>
             <div class="date-form__row">
               <input id="selected-date" name="selected-date" type="date" data-js="date-input">
@@ -71,7 +75,7 @@
         <section class="panel recommendations-panel recommendations-panel--single" aria-labelledby="recommendations-title">
           <div class="panel__header">
             <div>
-              <h2 id="recommendations-title">Best Recommendation</h2>
+              <h2 id="recommendations-title">Recommendation</h2>
             </div>
           </div>
 
