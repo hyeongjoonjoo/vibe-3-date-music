@@ -89,6 +89,9 @@ function bindEvents() {
     updateForDate(button.dataset.date);
   });
 
+  ui.elements.calendarGrid.addEventListener("pointermove", updateCalendarHover);
+  ui.elements.calendarGrid.addEventListener("pointerleave", clearCalendarHover);
+
   ui.elements.prevMonth.addEventListener("click", () => {
     const current = parseSelectedDate(state.context.date.iso);
     const previous = new Date(current.getFullYear(), current.getMonth() - 1, 1, 12);
@@ -164,9 +167,7 @@ function ensureRecommendations(ranked) {
 }
 
 function getInitialDate() {
-  const params = new URLSearchParams(window.location.search);
-  const fromUrl = params.get("selected-date");
-  return fromUrl || APP_CONFIG.defaultDate || toISODate(new Date());
+  return toISODate(new Date());
 }
 
 function syncUrlDate(isoDate) {
@@ -219,4 +220,40 @@ async function enrichTodayRecommendationLink() {
   if (state.context) {
     ui.render(state);
   }
+}
+
+function updateCalendarHover(event) {
+  if (!ui.elements.calendarGrid.contains(event.target)) {
+    clearCalendarHover();
+    return;
+  }
+
+  ui.elements.calendarGrid.querySelectorAll("[data-calendar-index]").forEach((button) => {
+    const rect = button.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const distance = Math.hypot(event.clientX - centerX, event.clientY - centerY);
+    const maxRadius = Math.max(rect.width, rect.height) * 2.15;
+    const proximity = Math.max(0, 1 - distance / maxRadius);
+
+    if (proximity <= 0) {
+      resetCalendarButtonHover(button);
+      return;
+    }
+
+    const easedProximity = proximity * proximity * (3 - 2 * proximity);
+    const scale = 1 + easedProximity * 0.095;
+
+    button.classList.add("date-cell--magnetic");
+    button.style.setProperty("--date-hover-scale", scale.toFixed(3));
+  });
+}
+
+function clearCalendarHover() {
+  ui.elements.calendarGrid.querySelectorAll(".date-cell--magnetic").forEach(resetCalendarButtonHover);
+}
+
+function resetCalendarButtonHover(button) {
+  button.classList.remove("date-cell--magnetic");
+  button.style.removeProperty("--date-hover-scale");
 }

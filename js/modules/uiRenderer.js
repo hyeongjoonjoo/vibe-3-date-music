@@ -100,7 +100,7 @@ function renderCalendar(elements, state) {
   });
 
   elements.calendarMonthLabel.textContent = calendar.monthLabel;
-  elements.calendarGrid.innerHTML = calendar.cells.map((cell) => {
+  elements.calendarGrid.innerHTML = calendar.cells.map((cell, index) => {
     const classes = [
       "date-cell",
       cell.inMonth ? "" : "date-cell--muted",
@@ -111,7 +111,7 @@ function renderCalendar(elements, state) {
     const current = cell.selected ? ' aria-current="date"' : "";
     const eventLabel = cell.labelText ? `, ${escapeHtml(cell.labelText)}` : "";
 
-    return `<button type="button" class="${classes}" data-date="${cell.iso}" aria-label="${cell.iso}${eventLabel}"${current}>${cell.label}</button>`;
+    return `<button type="button" class="${classes}" data-date="${cell.iso}" data-calendar-index="${index}" aria-label="${cell.iso}${eventLabel}"${current}>${cell.label}</button>`;
   }).join("");
 }
 
@@ -146,9 +146,11 @@ function renderRecommendations(elements, state) {
   const todayRecommendation = state.todayRecommendation;
 
   if (elements.topSongLabel) {
-    elements.topSongLabel.textContent = todayRecommendation
+    const todaySongText = todayRecommendation
       ? `${todayRecommendation.title} - ${todayRecommendation.artist}`
       : "Recommendation Song";
+    elements.topSongLabel.textContent = todaySongText;
+    elements.topSongLabel.dataset.marqueeText = todaySongText;
   }
 
   if (elements.topSongLink) {
