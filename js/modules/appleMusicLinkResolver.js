@@ -1,4 +1,5 @@
 import { buildAppleMusicSearchLink, buildFallbackArtworkUrl } from "./appleMusicFallbacks.js";
+import { resolveKnownAppleMusicTrack } from "./appleMusicMetadataOverrides.js";
 
 const resolvedLinkCache = new Map();
 const SEARCH_LIMIT = 10;
@@ -13,6 +14,9 @@ export async function resolveAppleMusicTrackUrl(candidate, storefront = "kr") {
 }
 
 export async function resolveAppleMusicTrack(candidate, storefront = "kr") {
+  const knownTrack = resolveKnownAppleMusicTrack(candidate, storefront);
+  if (knownTrack) return knownTrack;
+
   const searchTerms = buildSearchTerms(candidate);
   const storefronts = buildStorefrontFallbacks(storefront);
   const cacheKey = `${storefronts.join(",")}:${searchTerms.join("|")}`.toLowerCase();

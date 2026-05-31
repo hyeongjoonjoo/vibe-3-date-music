@@ -1,5 +1,6 @@
 import { buildAppleMusicLink } from "./appleMusicService.js";
 import { renderCalendarGrid } from "./calendarView.js";
+import { buildFallbackArtworkUrl } from "./appleMusicFallbacks.js";
 
 const EVENT_ROUTE_MAP = {
   "hangeul-day": "H",
@@ -37,6 +38,7 @@ const FEATURED_OCCASION_IDS = new Set([
 
 export function createUIRenderer(root = document) {
   const $ = (selector) => root.querySelector(selector);
+  root.addEventListener("error", handleArtworkLoadError, true);
   const elements = {
     selectedDateTitle: $('[data-js="selected-date-title"]'),
     topDateButton: $('[data-js="top-date-button"]'),
@@ -184,10 +186,20 @@ function renderRecommendations(elements, state) {
 }
 
 function renderArtwork(item) {
+  const fallbackArtworkUrl = buildFallbackArtworkUrl(item);
+
   if (item.artworkUrl) {
     return `
       <figure class="album-art">
-        <img src="${escapeAttribute(item.artworkUrl)}" alt="${escapeAttribute(`${item.title} album cover`)}" loading="lazy">
+        <img
+          src="${escapeAttribute(item.artworkUrl)}"
+          alt="${escapeAttribute(`${item.title} album cover`)}"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          referrerpolicy="no-referrer"
+          data-fallback-artwork="${escapeAttribute(fallbackArtworkUrl)}"
+        >
       </figure>
     `;
   }
@@ -201,6 +213,15 @@ function renderArtwork(item) {
 
 function getArtworkInitials(item) {
   return String(item.title || item.artist || "♪").trim().slice(0, 2).toUpperCase();
+}
+
+function handleArtworkLoadError(event) {
+  const image = event.target;
+  if (!(image instanceof HTMLImageElement) || !image.closest(".album-art")) return;
+  if (!image.dataset.fallbackArtwork || image.dataset.fallbackApplied === "true") return;
+
+  image.dataset.fallbackApplied = "true";
+  image.src = image.dataset.fallbackArtwork;
 }
 
 function renderMusicArea(elements, state) {
