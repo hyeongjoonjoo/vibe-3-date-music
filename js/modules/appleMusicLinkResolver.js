@@ -65,13 +65,49 @@ async function searchITunes(term, country) {
 
   try {
     const response = await fetch(`https://itunes.apple.com/search?${params.toString()}`);
-    if (!response.ok) return [];
+    if (!response.ok) return searchITunesJsonp(params);
 
     const data = await response.json();
     return Array.isArray(data.results) ? data.results : [];
   } catch {
-    return [];
+    return searchITunesJsonp(params);
   }
+}
+
+function searchITunesJsonp(params) {
+  if (typeof window === "undefined" || typeof document === "undefined") {
+    return Promise.resolve([]);
+  }
+
+  return new Promise((resolve) => {
+    const callbackName = `__dateMusicItunes${Date.now()}${Math.random().toString(16).slice(2)}`;
+    const script = document.createElement("script");
+    const cleanup = () => {
+      delete window[callbackName];
+      script.remove();
+    };
+    const timeout = window.setTimeout(() => {
+      cleanup();
+      resolve([]);
+    }, 6000);
+
+    window[callbackName] = (data) => {
+      window.clearTimeout(timeout);
+      cleanup();
+      resolve(Array.isArray(data?.results) ? data.results : []);
+    };
+
+    script.onerror = () => {
+      window.clearTimeout(timeout);
+      cleanup();
+      resolve([]);
+    };
+
+    const jsonpParams = new URLSearchParams(params);
+    jsonpParams.set("callback", callbackName);
+    script.src = `https://itunes.apple.com/search?${jsonpParams.toString()}`;
+    document.head.append(script);
+  });
 }
 
 function normalizeTrack(result) {
