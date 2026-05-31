@@ -52,6 +52,7 @@ export function createUIRenderer(root = document) {
     eventRoute: $('[data-js="event-route"]'),
     eventSummary: $('[data-js="event-summary"]'),
     contextList: $('[data-js="context-list"]'),
+    recommendationsPanel: $(".recommendations-panel"),
     recommendationList: $('[data-js="recommendation-list"]'),
     appleMusicStatus: $('[data-js="apple-music-status"]'),
     appleMusicSearchLink: $('[data-js="apple-music-search-link"]'),

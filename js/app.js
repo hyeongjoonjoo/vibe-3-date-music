@@ -31,6 +31,8 @@ const state = {
   appleMusicSearchUrl: "https://music.apple.com/kr/search"
 };
 
+let mobileRecommendationScrollTimer = null;
+
 bootstrap();
 
 async function bootstrap() {
@@ -87,10 +89,13 @@ function bindEvents() {
     const button = event.target.closest("[data-date]");
     if (!button) return;
     updateForDate(button.dataset.date);
+    scheduleMobileRecommendationScroll(button.dataset.date);
   });
 
   ui.elements.calendarGrid.addEventListener("pointermove", updateCalendarHover);
   ui.elements.calendarGrid.addEventListener("pointerleave", clearCalendarHover);
+  document.addEventListener("pointerup", resetMobileTapState, true);
+  document.addEventListener("click", resetMobileTapState, true);
 
   ui.elements.prevMonth.addEventListener("click", () => {
     const current = parseSelectedDate(state.context.date.iso);
@@ -125,6 +130,21 @@ function updateForDate(dateValue) {
   syncUrlDate(context.date.iso);
   ui.render(state);
   enrichPrimaryRecommendationLink(context.date.iso);
+}
+
+function scheduleMobileRecommendationScroll(isoDate) {
+  window.clearTimeout(mobileRecommendationScrollTimer);
+
+  if (!window.matchMedia("(max-width: 1120px)").matches) return;
+
+  mobileRecommendationScrollTimer = window.setTimeout(() => {
+    if (state.context?.date?.iso !== isoDate) return;
+
+    ui.elements.recommendationsPanel?.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      block: "start"
+    });
+  }, 850);
 }
 
 function setDateFormVisibility(visible) {
@@ -223,6 +243,11 @@ async function enrichTodayRecommendationLink() {
 }
 
 function updateCalendarHover(event) {
+  if (isTouchViewport()) {
+    clearCalendarHover();
+    return;
+  }
+
   if (!ui.elements.calendarGrid.contains(event.target)) {
     clearCalendarHover();
     return;
@@ -256,4 +281,39 @@ function clearCalendarHover() {
 function resetCalendarButtonHover(button) {
   button.classList.remove("date-cell--magnetic");
   button.style.removeProperty("--date-hover-scale");
+}
+
+function resetMobileTapState(event) {
+  if (!isTouchViewport()) return;
+
+  const target = event.target.closest("a, button, [role='button']");
+  if (!target) return;
+
+  // Keep the native date picker stable; blurring its trigger/input can close it immediately.
+  if (
+    target === ui.elements.selectedDateTitle ||
+    target === ui.elements.dateInput ||
+    ui.elements.dateForm.contains(target)
+  ) {
+    return;
+  }
+
+  window.setTimeout(() => {
+    clearCalendarHover();
+
+    if (typeof target.blur === "function") {
+      target.blur();
+    }
+
+    if (
+      document.activeElement instanceof HTMLElement &&
+      (target === document.activeElement || target.contains(document.activeElement))
+    ) {
+      document.activeElement.blur();
+    }
+  }, 90);
+}
+
+function isTouchViewport() {
+  return window.matchMedia("(hover: none), (pointer: coarse)").matches;
 }

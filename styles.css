@@ -1708,6 +1708,63 @@ body {
   }
 }
 
+@media (hover: none), (pointer: coarse) {
+  .system-line__song:hover {
+    color: var(--color-muted);
+  }
+
+  .system-line__song:hover span {
+    animation-play-state: running;
+  }
+
+  .title-block h1[role="button"]:hover {
+    color: var(--color-text);
+    transform: none;
+  }
+
+  .icon-button:hover {
+    background: var(--color-disc);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .date-cell:hover {
+    background: var(--color-disc);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .date-cell--muted:hover {
+    background: var(--color-disc-muted);
+    color: #6a6b66;
+  }
+
+  .date-cell--selected:hover {
+    background: var(--color-selected);
+    color: var(--color-disc);
+  }
+
+  .track-link:hover {
+    background: var(--color-disc);
+    color: var(--color-ink);
+    gap: 0;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .track-link:hover::before {
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  .icon-button:active,
+  .date-cell:active,
+  .track-link:active {
+    transform: scale(0.97);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .date-cell,
   .date-cell::before,
