@@ -1259,12 +1259,14 @@ body {
 
 .recommendation-card::before {
   content: none;
+  display: none;
 }
 
 .album-art {
   width: 400px;
   height: 400px;
   border-radius: 20px;
+  background: #f4f4ee;
   box-shadow: none;
 }
 
@@ -1272,6 +1274,10 @@ body {
   background: #f4f4ee;
   color: #ccccc7;
   font-size: 5rem;
+}
+
+.album-art img {
+  background: #f4f4ee;
 }
 
 .track-main {
@@ -1522,7 +1528,7 @@ body {
     column-gap: 16px;
     row-gap: 12px;
     width: var(--responsive-component-width);
-    margin: 44px auto 0;
+    margin: 26px auto 0;
     padding: 0;
   }
 
@@ -1550,8 +1556,8 @@ body {
     order: 4;
     scroll-snap-align: start;
     width: var(--responsive-component-width);
-    margin: 28px auto 0;
-    padding-top: 18px;
+    margin: 18px auto 0;
+    padding-top: 10px;
   }
 
   .month-controls {
@@ -1585,7 +1591,7 @@ body {
     scroll-snap-align: start;
     scroll-snap-stop: always;
     width: var(--responsive-component-width);
-    margin: 32px auto 0;
+    margin: 26px auto 0;
   }
 
   .recommendation-card {
@@ -1597,6 +1603,7 @@ body {
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
+    background: #f4f4ee;
   }
 
   .site-footer {
@@ -1643,8 +1650,18 @@ body {
   }
 
   .title-block {
-    margin-top: 52px;
+    margin-top: 58px;
+    scroll-margin-top: 42px;
     column-gap: 10px;
+  }
+
+  .calendar-panel {
+    margin-top: 34px;
+    padding-top: 0;
+  }
+
+  .recommendations-panel {
+    margin-top: 22px;
   }
 
   .title-block h1 {
